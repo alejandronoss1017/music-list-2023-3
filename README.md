@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-  <img src="./miscellaneous/MusicList.svg" alt="Music List" width="400px">
+  <img src="./miscellaneous/MusicList.svg" alt="Music List" width="100%">
 </div>
 
 # 🎧 music-list-2023-3

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.yordles.musiclist.models.DTO.SongRequest;
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -48,10 +49,18 @@ public class Song {
     private Date releaseDate;
 
     @JsonManagedReference
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinTable(name = "song_has_genre", joinColumns = @JoinColumn(name = "song_id_song"), inverseJoinColumns = @JoinColumn(name = "genre_id_genre"))
     @NonNull
     private Set<Genre> genres = new HashSet<>();
+
+    public Song(SongRequest songRequest){
+        this.name = songRequest.getName();
+        this.artist = songRequest.getArtist();
+        this.album = songRequest.getAlbum();
+        this.duration = songRequest.getDuration();
+        this.releaseDate = songRequest.getReleaseDate();
+    }
 
     public void addGenre(Genre genre) {
         genres.add(genre);

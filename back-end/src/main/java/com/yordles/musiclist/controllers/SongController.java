@@ -78,12 +78,7 @@ public class SongController {
      */
     @PostMapping(path = "/add")
     public ResponseEntity<String> addNewSong(@RequestBody SongRequest songRequest) throws Exception {
-        Song song = new Song();
-        song.setName(songRequest.getName());
-        song.setArtist(songRequest.getArtist());
-        song.setAlbum(songRequest.getAlbum());
-        song.setDuration(songRequest.getDuration());
-        song.setReleaseDate(songRequest.getReleaseDate());
+        Song song = new Song(songRequest);
 
         Set<Genre> genres = genreService.findGenreByIds(songRequest.getGenres());
 
@@ -121,18 +116,19 @@ public class SongController {
      * PUT request is made to /song/update/{id}, it returns a JSON object with the
      * song that was updated.
      *
-     * @param id This is the id of the song that will be updated in the database.
+     * @param id   This is the id of the song that will be updated in the database.
      * @param song This is the song object that will be updated in the database.
      * @return ResponseEntity<Song> This returns a JSON object with the song that
-     *        was updated.
-     *
+     * was updated.
      * @PutMapping: This annotation is used to map the HTTP PUT requests to
-     *                the handler methods. It has many attributes.
-     *
+     * the handler methods. It has many attributes.
+     * <p>
      * By StiivenOrtiz
      */
     @PutMapping(path = "/update/{id}")
-    public ResponseEntity<Song> updateSongById(@PathVariable Long id, @RequestBody Song song) throws Exception {
-        return ResponseEntity.ok().body(songService.updateSong(id, song));
+    public ResponseEntity<String> updateSongById(@RequestBody SongRequest songRequest, @PathVariable Long id) throws Exception {
+        Set<Genre> genres = genreService.findGenreByIds(songRequest.getGenres());
+        songService.updateSong(id, songRequest, genres);
+        return ResponseEntity.ok().body("Updated");
     }
 }

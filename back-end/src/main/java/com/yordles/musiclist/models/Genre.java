@@ -29,7 +29,7 @@ public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "genre_id")
+    @Column(name = "id_genre")
     private Long id;
 
     @Column(name = "name")

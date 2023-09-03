@@ -1,10 +1,14 @@
 package com.yordles.musiclist.services;
 
+import com.yordles.musiclist.models.DTO.SongRequest;
+import com.yordles.musiclist.models.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yordles.musiclist.models.Song;
 import com.yordles.musiclist.services.repositories.SongRepository;
+
+import java.util.Set;
 
 @Service
 public class SongService {
@@ -32,16 +36,17 @@ public class SongService {
         songRepository.delete(song);
     }
 
-    public Song updateSong(Long id, Song song) {
+    public Song updateSong(Long id, SongRequest songRequest, Set<Genre> genres) {
         Song songToUpdate = findSongById(id);
 
-        songToUpdate.setName(song.getName());
-        songToUpdate.setArtist(song.getArtist());
-        songToUpdate.setAlbum(song.getAlbum());
-        songToUpdate.setGenres(song.getGenres());
-        songToUpdate.setReleaseDate(song.getReleaseDate());
-        songToUpdate.setDuration(song.getDuration());
+        songToUpdate.setName(songRequest.getName());
+        songToUpdate.setArtist(songRequest.getArtist());
+        songToUpdate.setAlbum(songRequest.getAlbum());
+        songToUpdate.getGenres().clear();
+        songToUpdate.getGenres().addAll(genres);
+        songToUpdate.setReleaseDate(songRequest.getReleaseDate());
+        songToUpdate.setDuration(songRequest.getDuration());
 
-        return songRepository.save(song);
+        return songRepository.save(songToUpdate);
     }
 }

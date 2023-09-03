@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import com.yordles.musiclist.models.Genre;
 import com.yordles.musiclist.services.repositories.GenreRepository;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class GenreService {
 
@@ -24,6 +27,12 @@ public class GenreService {
 
     public Genre findGenreById(Long id) {
         return genreRepository.findById(id).orElse(null);
+    }
+
+    public Set<Genre> findGenreByIds(Set<Long> ids) {
+        Set<Genre> genreSet = new HashSet<>();
+        genreRepository.findAllById(ids).forEach(genreSet::add);
+        return genreSet;
     }
 
     public Genre saveGenre(Genre genre) {

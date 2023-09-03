@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -31,6 +32,8 @@ public class Genre {
     @NonNull
     private String name;
 
-    @ManyToMany(mappedBy = "genres", cascade = { CascadeType.ALL })
+    @JsonIgnore
+    @JsonBackReference
+    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
     private Set<Song> songs = new HashSet<>();
 }

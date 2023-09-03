@@ -55,5 +55,6 @@ public class Song {
 
     @ManyToMany
     @JoinTable(name = "song_has_genre", joinColumns = @JoinColumn(name = "song_id_song"), inverseJoinColumns = @JoinColumn(name = "genre_id_genre"))
+    @NonNull
     private Set<Genre> genres = new HashSet<>();
 }

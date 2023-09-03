@@ -31,4 +31,17 @@ public class SongService {
     public void deleteSong(Song song) {
         songRepository.delete(song);
     }
+
+    public Song updateSong(Long id, Song song) {
+        Song songToUpdate = findSongById(id);
+
+        songToUpdate.setName(song.getName());
+        songToUpdate.setArtist(song.getArtist());
+        songToUpdate.setAlbum(song.getAlbum());
+        songToUpdate.setGenres(song.getGenres());
+        songToUpdate.setRelease(song.getRelease());
+        songToUpdate.setDuration(song.getDuration());
+        
+        return songRepository.save(song);
+    }
 }

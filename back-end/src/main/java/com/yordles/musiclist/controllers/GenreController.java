@@ -62,7 +62,7 @@ public class GenreController {
      *                   this exception is thrown
      */
     @GetMapping(path = "/all")
-    public ResponseEntity<Iterable<Genre>> getAllUsers() throws Exception {
+    public ResponseEntity<Iterable<Genre>> getAllGenres() throws Exception {
 
         // 1. ResponseEntity: This is the main class that represents an HTTP response.
         // It's used to encapsulate the response status, headers, and body.

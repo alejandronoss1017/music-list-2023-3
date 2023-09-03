@@ -39,9 +39,9 @@ public class SongService {
         songToUpdate.setArtist(song.getArtist());
         songToUpdate.setAlbum(song.getAlbum());
         songToUpdate.setGenres(song.getGenres());
-        songToUpdate.setRelease(song.getRelease());
+        songToUpdate.setReleaseDate(song.getReleaseDate());
         songToUpdate.setDuration(song.getDuration());
-        
+
         return songRepository.save(song);
     }
 }

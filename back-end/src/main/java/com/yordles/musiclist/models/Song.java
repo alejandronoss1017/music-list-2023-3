@@ -4,14 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,12 +43,23 @@ public class Song {
     @NonNull
     private Long duration;
 
-    @Column(name = "release")
+    @Column(name = "release_date")
     @NonNull
-    private Date release;
+    private Date releaseDate;
 
-    @ManyToMany
+    @JsonManagedReference
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "song_has_genre", joinColumns = @JoinColumn(name = "song_id_song"), inverseJoinColumns = @JoinColumn(name = "genre_id_genre"))
     @NonNull
     private Set<Genre> genres = new HashSet<>();
+
+    public void addGenre(Genre genre) {
+        genres.add(genre);
+        genre.getSongs().add(this);
+    }
+
+    public void removeGenre(Genre genre) {
+        genres.remove(genre);
+        genre.getSongs().remove(this);
+    }
 }

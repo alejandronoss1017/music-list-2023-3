@@ -35,6 +35,8 @@ Clone the project
 
 **Back-end**
 
+For more specific instructions check the back-end README [front-end readme](./docs/back-end.md)
+
 Go to the back-end project directory
 
 ```bash
@@ -48,6 +50,8 @@ Start the server
 ```
 
 **Front-end**
+
+For more specific instructions check the front-end README [front-end readme](./docs/front-end.md)
 
 Go to the front-end directory
 

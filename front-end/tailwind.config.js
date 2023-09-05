@@ -3,7 +3,13 @@ module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        "tea-green": "#BDD9BF",
+        "russian-violet": "#0C0A3E",
+        goldenrod: "#D79B1F",
+        white: "#FFFFFF",
+        "dark-purple": "#412234",
+      },
       fontSize: {
         sm: "0.8rem",
         base: "1rem",
@@ -16,7 +22,7 @@ module.exports = {
         "6xl": "3.5rem",
       },
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"]
+        poppins: ["Poppins", "sans-serif"],
       },
     },
   },

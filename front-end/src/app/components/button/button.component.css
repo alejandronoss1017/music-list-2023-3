@@ -1,0 +1,11 @@
+.blue-button {
+  @apply bg-russian-violet w-full rounded-xl p-4 font-poppins text-white text-xl font-semibold shadow-xl transition duration-500 ease-in-out;
+}
+
+.blue-button:hover {
+  @apply bg-blue-900 shadow-none;
+}
+
+.blue-button:active {
+  @apply bg-blue-900 shadow-none;
+}

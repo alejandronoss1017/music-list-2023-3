@@ -12,16 +12,16 @@
   <main
     class="flex md:flex-col md:h-screen md:w-2/5 justify-between items-center"
   >
-    <section
-      class="flex flex-col py-20 px-11 items-center justify-center gap-11"
-    >
-      <article class="w-full flex flex-col p-3 items-start gap-3">
+    <section class="h-full flex flex-col justify-between px-11 py-11">
+      <article
+        class="text-dark-purple w-full flex flex-col p-3 items-start gap-3"
+      >
         <h1 class="font-bold">Login</h1>
         <h2>Please enter your login details to sign in.</h2>
       </article>
 
       <input
-        type="text"
+        type="email"
         class="w-full rounded-xl border-2 border-D1D1D1 p-4"
         placeholder="Email address"
       />
@@ -32,30 +32,45 @@
         placeholder="Password"
       />
 
-      <div class="flex w-full items-center justify-between px-1">
-        <span class="flex gap-3 items-center">
-          <input type="checkbox" name="" id="" />
-          <p>Keep me logged id</p>
+      <div
+        class="text-dark-purple flex w-full items-center justify-between px-1"
+      >
+        <span class="flex gap-1 items-center">
+          <input
+            type="checkbox"
+            class="h-4 w-4 accent-russian-violet checked:bg-russian-violet"
+            name=""
+            id=""
+          />
+          <label for="" class="font-poppins"> Keep me logged in</label>
         </span>
-        <a href="">Forgot password?</a>
+        <a class="text-goldenrod font-bold" href="">Forgot password?</a>
       </div>
 
-      <button type="button" class="bg-purple-500 w-full rounded-xl p-4">
-        <h2 class="text-white">Sing in</h2>
-      </button>
+      <app-button [class]="'w-full'" [text]="'Log in'"></app-button>
 
-      <span class="flex w-full items-center gap-3">
+      <span class="text-dark-purple flex w-full items-center gap-3">
         <p>Don't have an account?</p>
-        <a href=""> Sing up</a>
+        <a class="text-goldenrod font-bold" href=""> Sing up</a>
       </span>
 
-      <div>
-        <p>Or continue with</p>
+      <div class="text-dark-purple flex items-center justify-center w-full">
+        <hr class="flex-grow border-t border-dark-purple inline-block" />
+        <span class="px-5"> Or continue with </span>
+        <hr class="flex-grow border-t border-dark-purple inline-block" />
       </div>
 
       <div class="w-full flex gap-16 justify-center">
-        <img src="assets/images/google.svg" alt="" class="h-16" />
-        <img src="assets/images/microsoft.svg" alt="" class="h-16" />
+        <img
+          src="assets/images/google.svg"
+          alt=""
+          class="lg:min-h-2 lg:max-h-12"
+        />
+        <img
+          src="assets/images/microsoft.svg"
+          alt=""
+          class="lg:min-h-2 lg:max-h-12"
+        />
       </div>
     </section>
   </main>

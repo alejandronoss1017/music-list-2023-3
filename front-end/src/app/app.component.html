@@ -1,8 +1,8 @@
 <div class="w-full flex">
   <div class="md:w-3/5 md:h-screen">
     <video
-      autoplay
-      muted
+      oncanplay="this.play()"
+      onloadedmetadata="this.muted = true"
       loop
       class="h-full w-full object-cover hue-rotate-15 grayscale brightness-50"
     >

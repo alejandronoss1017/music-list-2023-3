@@ -1,26 +1,18 @@
 package com.yordles.musiclist.models;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.yordles.musiclist.models.DTO.SongRequest;
 import jakarta.persistence.*;
-
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@ToString
 public class Song {
 
     @Id
@@ -28,47 +20,27 @@ public class Song {
     @Column(name = "id_song")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     @NonNull
     private String name;
 
-    @Column(name = "artist")
+    @Column(name = "artist", nullable = false)
     @NonNull
     private String artist;
 
-    @Column(name = "album")
+    @Column(name = "album", nullable = false)
     @NonNull
     private String album;
 
-    @Column(name = "duration")
+    @Column(name = "duration", nullable = false)
     @NonNull
     private Long duration;
 
-    @Column(name = "release_date")
+    @Column(name = "release_date", nullable = false)
     @NonNull
     private Date releaseDate;
 
-    @JsonManagedReference
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
-    @JoinTable(name = "song_has_genre", joinColumns = @JoinColumn(name = "song_id_song"), inverseJoinColumns = @JoinColumn(name = "genre_id_genre"))
-    @NonNull
-    private Set<Genre> genres = new HashSet<>();
+    @ManyToMany(mappedBy = "song")
+    private Set<PlayListHasSong> songInPlaylist;
 
-    public Song(SongRequest songRequest){
-        this.name = songRequest.getName();
-        this.artist = songRequest.getArtist();
-        this.album = songRequest.getAlbum();
-        this.duration = songRequest.getDuration();
-        this.releaseDate = songRequest.getReleaseDate();
-    }
-
-    public void addGenre(Genre genre) {
-        genres.add(genre);
-        genre.getSongs().add(this);
-    }
-
-    public void removeGenre(Genre genre) {
-        genres.remove(genre);
-        genre.getSongs().remove(this);
-    }
 }

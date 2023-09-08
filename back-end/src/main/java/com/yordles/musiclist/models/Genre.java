@@ -1,39 +1,24 @@
 package com.yordles.musiclist.models;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
-@Table(name = "genre")
-@Getter
-@Setter
+@Table(name = "genre", indexes = { 
+@Index(name = "name_UNIQUE", columnList = "name", unique = true) })
+@Data
 @NoArgsConstructor
-@RequiredArgsConstructor
-@ToString
 public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_genre")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     @NonNull
     private String name;
 
-    @JsonIgnore
-    @JsonBackReference
-    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
-    private Set<Song> songs = new HashSet<>();
 }

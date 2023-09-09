@@ -7,5 +7,7 @@ import com.yordles.musiclist.models.Genre;
 
 @Repository
 public interface GenreRepository extends CrudRepository<Genre, Long> {
+    
+    Genre findByName(String name);
 
 }

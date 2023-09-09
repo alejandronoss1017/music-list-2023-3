@@ -27,7 +27,7 @@ public class PlayList {
     @NonNull
     private Genre genre;
 
-    @OneToMany(mappedBy = "playList")
+    @OneToMany(mappedBy = "playList", cascade = CascadeType.ALL)
     private Set<PlayListHasSong> playListHasSongs;
 
 }

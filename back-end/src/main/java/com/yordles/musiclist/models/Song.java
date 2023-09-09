@@ -12,7 +12,7 @@ import lombok.NonNull;
 
 @Entity
 @Table(name = "song", uniqueConstraints = {
-        @UniqueConstraint(name = "name_artist_album_UNIQUE",columnNames = { "name", "artist", "album" })
+        @UniqueConstraint(name = "name_artist_album_UNIQUE", columnNames = { "name", "artist", "album" })
 })
 @Data
 @NoArgsConstructor
@@ -45,7 +45,13 @@ public class Song {
     @NonNull
     private Date releaseDate = new Date();
 
-    @OneToMany(mappedBy = "song")
+    @Column(name = "likes", nullable = false, columnDefinition = "INT DEFAULT 0")
+    private Integer likes = 0;
+
+    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
+    private Set<SongHasUserLike> songHasUserLikes;
+
+    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
     private Set<PlayListHasSong> playListHasSongs;
 
 }

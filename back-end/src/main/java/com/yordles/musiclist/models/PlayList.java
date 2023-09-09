@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Entity
-@Table(name = "playlist", indexes = { @Index(name = "fk_playlist_genre_idx", columnList = "genre_id") })
+@Table(name = "playlist", indexes = {
+        @Index(name = "fk_playlist_genre_idx", columnList = "genre_id") }, uniqueConstraints = {
+                @UniqueConstraint(name = "name_UNIQUE", columnNames = { "name" }) })
 @Data
 @NoArgsConstructor
 public class PlayList {

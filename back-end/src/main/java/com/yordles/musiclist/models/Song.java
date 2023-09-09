@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "song", uniqueConstraints = {
@@ -17,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 })
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Song {
 
     @Id

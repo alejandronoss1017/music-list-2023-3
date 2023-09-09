@@ -1,14 +1,10 @@
 package com.yordles.musiclist.services;
 
-import com.yordles.musiclist.models.DTO.SongRequest;
-import com.yordles.musiclist.models.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yordles.musiclist.models.Song;
 import com.yordles.musiclist.services.repositories.SongRepository;
-
-import java.util.Set;
 
 @Service
 public class SongService {
@@ -28,6 +24,10 @@ public class SongService {
         return songRepository.save(song);
     }
 
+    public Iterable<Song> saveManySongs(Iterable<Song> songs) {
+        return songRepository.saveAll(songs);
+    }
+
     public void deleteSongById(Long id) {
         songRepository.deleteById(id);
     }
@@ -36,17 +36,17 @@ public class SongService {
         songRepository.delete(song);
     }
 
-    public Song updateSong(Long id, SongRequest songRequest, Set<Genre> genres) {
-        Song songToUpdate = findSongById(id);
+    // public Song updateSong(Long id, SongRequest songRequest, Set<Genre> genres) {
+    // Song songToUpdate = findSongById(id);
 
-        songToUpdate.setName(songRequest.getName());
-        songToUpdate.setArtist(songRequest.getArtist());
-        songToUpdate.setAlbum(songRequest.getAlbum());
-        songToUpdate.getGenres().clear();
-        songToUpdate.getGenres().addAll(genres);
-        songToUpdate.setReleaseDate(songRequest.getReleaseDate());
-        songToUpdate.setDuration(songRequest.getDuration());
+    // songToUpdate.setName(songRequest.getName());
+    // songToUpdate.setArtist(songRequest.getArtist());
+    // songToUpdate.setAlbum(songRequest.getAlbum());
+    // songToUpdate.getGenres().clear();
+    // songToUpdate.getGenres().addAll(genres);
+    // songToUpdate.setReleaseDate(songRequest.getReleaseDate());
+    // songToUpdate.setDuration(songRequest.getDuration());
 
-        return songRepository.save(songToUpdate);
-    }
+    // return songRepository.save(songToUpdate);
+    // }
 }

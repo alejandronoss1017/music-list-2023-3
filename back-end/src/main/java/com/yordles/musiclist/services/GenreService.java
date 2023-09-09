@@ -29,6 +29,10 @@ public class GenreService {
         return genreRepository.findById(id).orElse(null);
     }
 
+    public Genre findGenreByName(String name) {
+        return genreRepository.findByName(name);
+    }
+
     public Set<Genre> findGenreByIds(Set<Long> ids) {
         Set<Genre> genreSet = new HashSet<>();
         genreRepository.findAllById(ids).forEach(genreSet::add);
@@ -37,6 +41,33 @@ public class GenreService {
 
     public Genre saveGenre(Genre genre) {
         return genreRepository.save(genre);
+    }
+
+    public Iterable<Genre> saveManyGenres(Iterable<Genre> genres) {
+        return genreRepository.saveAll(genres);
+    }
+
+    public Genre patchGenre(Long id, Genre genre) {
+        Genre genreToPatch = findGenreById(id);
+
+        if (genre.getName() != null) {
+            genreToPatch.setName(genre.getName());
+        }
+
+        if (genre.getDescription() != null) {
+            genreToPatch.setDescription(genre.getDescription());
+        }
+
+        return genreRepository.save(genreToPatch);
+    }
+
+    public Genre updateGenre(Long id, Genre genre) {
+        Genre genreToUpdate = findGenreById(id);
+
+        genreToUpdate.setName(genre.getName());
+        genreToUpdate.setDescription(genre.getDescription());
+
+        return genreRepository.save(genreToUpdate);
     }
 
     public void deleteGenreById(Long id) {

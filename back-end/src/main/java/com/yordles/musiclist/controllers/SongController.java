@@ -1,17 +1,14 @@
 package com.yordles.musiclist.controllers;
 
-
-import com.yordles.musiclist.models.Genre;
+import com.yordles.musiclist.models.PlayList;
+import com.yordles.musiclist.models.PlayListHasSong;
 import com.yordles.musiclist.models.Song;
-import com.yordles.musiclist.models.DTO.SongRequest;
-import com.yordles.musiclist.services.GenreService;
+import com.yordles.musiclist.services.PlayListService;
 import com.yordles.musiclist.services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Set;
 
 /**
  * This class is a controller class that will handle the HTTP requests related
@@ -34,7 +31,7 @@ import java.util.Set;
  *
  */
 
-@Controller
+@RestController
 @RequestMapping(path = "/song")
 public class SongController {
 
@@ -42,7 +39,7 @@ public class SongController {
     private SongService songService;
 
     @Autowired
-    private GenreService genreService;
+    private PlayListService playListService;
 
     /**
      * This method is used to get all the songs from the database, it is called
@@ -50,17 +47,24 @@ public class SongController {
      * the songs.
      *
      * @return ResponseEntity<Iterable<Song>> This returns a JSON object with all
-     * the songs
+     *         the songs
      *
      * @GetMapping: This annotation is used to map the HTTP GET requests to the
-     *             handler methods. It has many attributes.
+     *              handler methods. It has many attributes.
      *
-     * By StiivenOrtiz
+     *              By StiivenOrtiz
      *
      */
     @GetMapping(path = "/all")
     public ResponseEntity<Iterable<Song>> getAllSongs() throws Exception {
-        return ResponseEntity.ok().body(songService.findAllSongs());
+
+        Iterable<Song> songs = songService.findAllSongs();
+
+        if (songs == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
     /**
@@ -70,45 +74,69 @@ public class SongController {
      *
      * @param song This is the song object that will be added to the database.
      * @return ResponseEntity<Song> This returns a JSON object with the new song
-     * that was added.
+     *         that was added.
      * @PostMapping: This annotation is used to map the HTTP POST requests to the
-     * handler methods. It has many attributes.
-     * <p>
-     * By StiivenOrtiz
+     *               handler methods. It has many attributes.
+     *               <p>
+     *               By StiivenOrtiz
      */
     @PostMapping(path = "/add")
-    public ResponseEntity<String> addNewSong(@RequestBody SongRequest songRequest) throws Exception {
-        Song song = new Song(songRequest);
+    public ResponseEntity<Song> addNewSong(@RequestBody Song song) throws Exception {
 
-        Set<Genre> genres = genreService.findGenreByIds(songRequest.getGenres());
-
-        for (Genre genre : genres) {
-            song.addGenre(genre);
+        if (song.getPlayListHasSongs() != null) {
+            
+            for (PlayListHasSong playListHasSong : song.getPlayListHasSongs()) {
+                playListHasSong.setSong(song);
+                Long playListId = playListHasSong.getPlayList().getId();
+                PlayList playList = playListService.findPlayListById(playListId);
+                playListHasSong.setPlayList(playList);
+            }
         }
 
-        songService.saveSong(song);
-        return ResponseEntity.ok().body("Saved");
+        Song songToSave = songService.saveSong(song);
+
+        if (songToSave == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(songToSave, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/addMany")
+    public ResponseEntity<Iterable<Song>> addNewSongs(@RequestBody Iterable<Song> songs) throws Exception {
+        Iterable<Song> savedSongs = songService.saveManySongs(songs);
+
+        if (savedSongs == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(savedSongs, HttpStatus.CREATED);
     }
 
     /**
      * This method is used to delete a song from the database, it is called when a
-     * DELETE request is made to /song/delete/{id}, it returns a JSON object with the
+     * DELETE request is made to /song/delete/{id}, it returns a JSON object with
+     * the
      * song that was deleted.
      *
      * @param id This is the id of the song that will be deleted from the database.
      * @return ResponseEntity<Song> This returns a JSON object with the song that
-     *        was deleted.
+     *         was deleted.
      *
      * @DeleteMapping: This annotation is used to map the HTTP DELETE requests to
-     *                the handler methods. It has many attributes.
+     *                 the handler methods. It has many attributes.
      *
-     * By StiivenOrtiz
+     *                 By StiivenOrtiz
      */
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<Song> deleteSongById(@PathVariable Long id) throws Exception {
         Song song = songService.findSongById(id);
-        songService.deleteSongById(id);
-        return ResponseEntity.ok().body(song);
+
+        if (song == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     /**
@@ -119,16 +147,18 @@ public class SongController {
      * @param id   This is the id of the song that will be updated in the database.
      * @param song This is the song object that will be updated in the database.
      * @return ResponseEntity<Song> This returns a JSON object with the song that
-     * was updated.
+     *         was updated.
      * @PutMapping: This annotation is used to map the HTTP PUT requests to
-     * the handler methods. It has many attributes.
-     * <p>
-     * By StiivenOrtiz
+     *              the handler methods. It has many attributes.
+     *              <p>
+     *              By StiivenOrtiz
      */
-    @PutMapping(path = "/update/{id}")
-    public ResponseEntity<String> updateSongById(@RequestBody SongRequest songRequest, @PathVariable Long id) throws Exception {
-        Set<Genre> genres = genreService.findGenreByIds(songRequest.getGenres());
-        songService.updateSong(id, songRequest, genres);
-        return ResponseEntity.ok().body("Updated");
-    }
+    // @PutMapping(path = "/update/{id}")
+    // public ResponseEntity<String> updateSongById(@RequestBody SongRequest
+    // songRequest, @PathVariable Long id)
+    // throws Exception {
+    // Set<Genre> genres = genreService.findGenreByIds(songRequest.getGenres());
+    // songService.updateSong(id, songRequest, genres);
+    // return ResponseEntity.ok().body("Updated");
+    // }
 }

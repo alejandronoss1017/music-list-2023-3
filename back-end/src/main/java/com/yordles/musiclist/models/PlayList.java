@@ -27,18 +27,7 @@ public class PlayList {
     @NonNull
     private Genre genre;
 
-    // @ManyToMany()
-    // @JoinTable(
-    //     name = "playlist_has_song",
-    //     joinColumns = @JoinColumn(name = "song_id"),
-    //     inverseJoinColumns = @JoinColumn(name = "playlist_id"),
-    //     indexes = {
-    //         @Index(name = "fk_playlist_has_song_song1_idx", columnList = "song_id"),
-    //         @Index(name = "fk_playlist_has_song_playlist1_idx", columnList = "playlist_id")
-    //     }
-    // )
-    // private Set<Song> songs;
+    @OneToMany(mappedBy = "playList")
+    private Set<PlayListHasSong> playListHasSongs;
 
-    @ManyToMany(mappedBy = "playlist")
-    private Set<PlayListHasSong> playlistHasSong;
 }

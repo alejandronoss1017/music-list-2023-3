@@ -21,4 +21,8 @@ public class Genre {
     @NonNull
     private String name;
 
+    @Column(name = "description", nullable = false)
+    @NonNull
+    private String description;
+
 }

@@ -3,6 +3,8 @@ package com.yordles.musiclist.models;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,9 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Entity
+@Table(name = "song", uniqueConstraints = {
+        @UniqueConstraint(name = "name_artist_album_UNIQUE",columnNames = { "name", "artist", "album" })
+})
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -17,7 +22,7 @@ public class Song {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_song")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name", nullable = false)
@@ -34,13 +39,15 @@ public class Song {
 
     @Column(name = "duration", nullable = false)
     @NonNull
-    private Long duration;
+    private Double duration;
 
     @Column(name = "release_date", nullable = false)
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @NonNull
-    private Date releaseDate;
+    private Date releaseDate = new Date();
 
-    @ManyToMany(mappedBy = "song")
-    private Set<PlayListHasSong> songInPlaylist;
+    @OneToMany(mappedBy = "song")
+    private Set<PlayListHasSong> playListHasSongs;
 
 }

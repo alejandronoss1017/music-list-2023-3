@@ -1,6 +1,6 @@
 package com.yordles.musiclist.models;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import jakarta.persistence.*;

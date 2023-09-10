@@ -51,9 +51,6 @@ public class SongController {
      *
      * @GetMapping: This annotation is used to map the HTTP GET requests to the
      *              handler methods. It has many attributes.
-     *
-     *              By StiivenOrtiz
-     *
      */
     @GetMapping(path = "/all")
     public ResponseEntity<Iterable<Song>> getAllSongs() throws Exception {
@@ -78,13 +75,12 @@ public class SongController {
      * @PostMapping: This annotation is used to map the HTTP POST requests to the
      *               handler methods. It has many attributes.
      *               <p>
-     *               By StiivenOrtiz
      */
     @PostMapping(path = "/add")
     public ResponseEntity<Song> addNewSong(@RequestBody Song song) throws Exception {
 
         if (song.getPlayListHasSongs() != null) {
-            
+
             for (PlayListHasSong playListHasSong : song.getPlayListHasSongs()) {
                 playListHasSong.setSong(song);
                 Long playListId = playListHasSong.getPlayList().getId();
@@ -125,8 +121,6 @@ public class SongController {
      *
      * @DeleteMapping: This annotation is used to map the HTTP DELETE requests to
      *                 the handler methods. It has many attributes.
-     *
-     *                 By StiivenOrtiz
      */
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<Song> deleteSongById(@PathVariable Long id) throws Exception {
@@ -151,7 +145,6 @@ public class SongController {
      * @PutMapping: This annotation is used to map the HTTP PUT requests to
      *              the handler methods. It has many attributes.
      *              <p>
-     *              By StiivenOrtiz
      */
     // @PutMapping(path = "/update/{id}")
     // public ResponseEntity<String> updateSongById(@RequestBody SongRequest

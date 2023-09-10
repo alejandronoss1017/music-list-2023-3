@@ -4,20 +4,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 
 import com.yordles.musiclist.services.repositories.UserRepository;
 import com.yordles.musiclist.models.User;
 
-
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    
+
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public Iterable<User> findAllUsers() {
@@ -29,7 +33,6 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-
     @Transactional
     public Set<User> findUserByIds(Set<Long> ids) {
         Set<User> userSet = new HashSet<>();
@@ -39,14 +42,15 @@ public class UserService {
 
     @Transactional
     public User saveUser(User User) {
+        User.setPassword(encodePassword(User.getPassword()));
         return userRepository.save(User);
     }
 
     @Transactional
     public Iterable<User> saveManyUsers(Iterable<User> users) {
+        users.forEach(user -> user.setPassword(encodePassword(user.getPassword())));
         return userRepository.saveAll(users);
     }
-
 
     @Transactional
     public User updateUser(Long id, User user) {
@@ -54,7 +58,7 @@ public class UserService {
 
         userToUpdate.setCreateTime(user.getCreateTime());
         userToUpdate.setEmail(user.getEmail());
-        userToUpdate.setPassword(user.getPassword());
+        userToUpdate.setPassword(encodePassword(user.getPassword()));
         userToUpdate.setUsername(user.getUsername());
         userToUpdate.setVerified(user.isVerified());
 
@@ -66,4 +70,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public String encodePassword(String password) {
+        return passwordEncoder.encode(password);
+    }
 }

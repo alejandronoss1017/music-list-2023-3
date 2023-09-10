@@ -110,6 +110,31 @@ public class SongController {
     }
 
     /**
+     * This method is used to update a song in the database, it is called when a
+     * PUT request is made to /song/update/{id}, it returns a JSON object with the
+     * song that was updated.
+     *
+     * @param id   This is the id of the song that will be updated in the database.
+     * @param song This is the song object that will be updated in the database.
+     * @return ResponseEntity<Song> This returns a JSON object with the song that
+     *         was updated.
+     * @PutMapping: This annotation is used to map the HTTP PUT requests to
+     *              the handler methods. It has many attributes.
+     *              <p>
+     */
+    @PutMapping(path = "/update/{id}")
+    public ResponseEntity<String> updateSongById(@PathVariable Long id, @RequestBody Song song) throws Exception {
+            
+            Song songToUpdate = songService.updateSong(id, song);
+    
+            if (songToUpdate == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+    
+            return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
      * This method is used to delete a song from the database, it is called when a
      * DELETE request is made to /song/delete/{id}, it returns a JSON object with
      * the
@@ -130,28 +155,9 @@ public class SongController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        songService.deleteSongById(id);
+
+        return new ResponseEntity<>(song, HttpStatus.OK);
     }
 
-    /**
-     * This method is used to update a song in the database, it is called when a
-     * PUT request is made to /song/update/{id}, it returns a JSON object with the
-     * song that was updated.
-     *
-     * @param id   This is the id of the song that will be updated in the database.
-     * @param song This is the song object that will be updated in the database.
-     * @return ResponseEntity<Song> This returns a JSON object with the song that
-     *         was updated.
-     * @PutMapping: This annotation is used to map the HTTP PUT requests to
-     *              the handler methods. It has many attributes.
-     *              <p>
-     */
-    // @PutMapping(path = "/update/{id}")
-    // public ResponseEntity<String> updateSongById(@RequestBody SongRequest
-    // songRequest, @PathVariable Long id)
-    // throws Exception {
-    // Set<Genre> genres = genreService.findGenreByIds(songRequest.getGenres());
-    // songService.updateSong(id, songRequest, genres);
-    // return ResponseEntity.ok().body("Updated");
-    // }
 }

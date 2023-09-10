@@ -4,18 +4,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.yordles.musiclist.models.Admin;
 import com.yordles.musiclist.services.repositories.AdminRepository;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class AdminService {
 
     @Autowired
     private AdminRepository adminRepository;
+
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public Iterable<Admin> findAllAdmins() {
@@ -27,7 +33,6 @@ public class AdminService {
         return adminRepository.findById(id).orElse(null);
     }
 
-
     @Transactional
     public Set<Admin> findAdminByIds(Set<Long> ids) {
         Set<Admin> adminSet = new HashSet<>();
@@ -37,22 +42,24 @@ public class AdminService {
 
     @Transactional
     public Admin saveAdmin(Admin admin) {
+        admin.setPassword(encodePassword(admin.getPassword()));
         return adminRepository.save(admin);
     }
 
     @Transactional
     public Iterable<Admin> saveManyadmins(Iterable<Admin> admins) {
+        admins.forEach(admin -> admin.setPassword(encodePassword(admin.getPassword())));
         return adminRepository.saveAll(admins);
     }
-
 
     @Transactional
     public Admin updateadmin(Long id, Admin admin) {
         Admin adminToUpdate = findAdminById(id);
 
         adminToUpdate.setEmail(admin.getEmail());
-        adminToUpdate.setPassword(admin.getPassword());
-        adminToUpdate.setUsername(admin.getUsername());;
+        adminToUpdate.setPassword(encodePassword(admin.getPassword()));
+        adminToUpdate.setUsername(admin.getUsername());
+        ;
 
         return adminRepository.save(adminToUpdate);
     }
@@ -61,5 +68,8 @@ public class AdminService {
     public void deleteAdminById(Long id) {
         adminRepository.deleteById(id);
     }
-    
+
+    public String encodePassword(String password) {
+        return passwordEncoder.encode(password);
+    }
 }

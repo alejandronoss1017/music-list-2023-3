@@ -2,6 +2,7 @@ package com.yordles.musiclist.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yordles.musiclist.models.Genre;
 import com.yordles.musiclist.services.repositories.GenreRepository;
@@ -21,32 +22,39 @@ public class GenreService {
     @Autowired
     private GenreRepository genreRepository;
 
+    @Transactional
     public Iterable<Genre> findAllGenres() {
         return genreRepository.findAll();
     }
 
+    @Transactional
     public Genre findGenreById(Long id) {
         return genreRepository.findById(id).orElse(null);
     }
 
+    @Transactional
     public Genre findGenreByName(String name) {
         return genreRepository.findByName(name);
     }
 
+    @Transactional
     public Set<Genre> findGenreByIds(Set<Long> ids) {
         Set<Genre> genreSet = new HashSet<>();
         genreRepository.findAllById(ids).forEach(genreSet::add);
         return genreSet;
     }
 
+    @Transactional
     public Genre saveGenre(Genre genre) {
         return genreRepository.save(genre);
     }
 
+    @Transactional
     public Iterable<Genre> saveManyGenres(Iterable<Genre> genres) {
         return genreRepository.saveAll(genres);
     }
 
+    @Transactional
     public Genre patchGenre(Long id, Genre genre) {
         Genre genreToPatch = findGenreById(id);
 
@@ -61,6 +69,7 @@ public class GenreService {
         return genreRepository.save(genreToPatch);
     }
 
+    @Transactional
     public Genre updateGenre(Long id, Genre genre) {
         Genre genreToUpdate = findGenreById(id);
 
@@ -70,10 +79,12 @@ public class GenreService {
         return genreRepository.save(genreToUpdate);
     }
 
+    @Transactional
     public void deleteGenreById(Long id) {
         genreRepository.deleteById(id);
     }
 
+    @Transactional
     public void deleteGenre(Genre genre) {
         genreRepository.delete(genre);
     }

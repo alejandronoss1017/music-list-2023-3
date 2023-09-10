@@ -35,7 +35,7 @@ public class AdminController {
      *                   this exception is thrown
      */
     @GetMapping(path = "/all")
-    public ResponseEntity<Iterable<Admin>> getAlladmins() throws Exception {
+    public ResponseEntity<Iterable<Admin>> getAllAdmins() throws Exception {
 
         Iterable<Admin> admin = adminService.findAllAdmins();
 
@@ -65,7 +65,7 @@ public class AdminController {
      *                   this exception is thrown
      */
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Admin> getadminById(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Admin> getAdminById(@PathVariable Long id) throws Exception {
 
         Admin admin = adminService.findAdminById(id);
 
@@ -88,7 +88,7 @@ public class AdminController {
      *                   exception is thrown
      */
     @PostMapping(path = "/add")
-    public ResponseEntity<Admin> addNewadmin(@RequestBody Admin admin) throws Exception {
+    public ResponseEntity<Admin> addNewAdmin(@RequestBody Admin admin) throws Exception {
 
         Admin adminToSave = adminService.saveAdmin(admin);
 
@@ -114,9 +114,9 @@ public class AdminController {
      *                   this exception is thrown
      */
     @PutMapping(path = "/update/{id}")
-    public ResponseEntity<Admin> updateadmin(@PathVariable Long id, @RequestBody Admin admin) throws Exception {
+    public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody Admin admin) throws Exception {
 
-        Admin adminToUpdate = adminService.updateadmin(id, admin);
+        Admin adminToUpdate = adminService.updateAdmin(id, admin);
 
         if (adminToUpdate == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -127,7 +127,7 @@ public class AdminController {
 
 
     /**
-     * This method is used to delete a admin from the database, it is called when a
+     * This method is used to delete an admin from the database, it is called when a
      * DELETE request is made to /admin/delete/{id}.
      * 
      * @param id The id of the admin to be deleted
@@ -142,7 +142,7 @@ public class AdminController {
      *                   this exception is thrown
      */
     @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity<Admin> deleteadmin(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Admin> deleteAdmin(@PathVariable Long id) throws Exception {
 
         Admin admin = adminService.findAdminById(id);
 

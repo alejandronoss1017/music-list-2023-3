@@ -47,13 +47,13 @@ public class AdminService {
     }
 
     @Transactional
-    public Iterable<Admin> saveManyadmins(Iterable<Admin> admins) {
+    public Iterable<Admin> saveManyAdmins(Iterable<Admin> admins) {
         admins.forEach(admin -> admin.setPassword(encodePassword(admin.getPassword())));
         return adminRepository.saveAll(admins);
     }
 
     @Transactional
-    public Admin updateadmin(Long id, Admin admin) {
+    public Admin updateAdmin(Long id, Admin admin) {
         Admin adminToUpdate = findAdminById(id);
 
         adminToUpdate.setEmail(admin.getEmail());

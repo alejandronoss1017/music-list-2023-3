@@ -157,7 +157,7 @@ public class SongController {
 
         songService.deleteSongById(id);
 
-        return new ResponseEntity<>(song, HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
 }

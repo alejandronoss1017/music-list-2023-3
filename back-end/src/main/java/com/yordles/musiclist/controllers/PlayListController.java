@@ -24,6 +24,7 @@ import com.yordles.musiclist.services.SongService;
 @RestController
 @RequestMapping(path = "/playlist")
 public class PlayListController {
+    
     @Autowired
     private PlayListService playListService;
 
@@ -133,7 +134,17 @@ public class PlayListController {
         return new ResponseEntity<>(savedPlayLists, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "/delete/{id}")
+    @PutMapping(path = "/update/{id}")
+    public String updatePlayList(@PathVariable Long id) {
+        return "Updated";
+    }
+
+    @PatchMapping(path = "/patch/{id}")
+    public String PatchPlayList(@PathVariable Long id) {
+        return "Patched";
+    }
+
+        @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<PlayList> deletePlayList(@PathVariable Long id) {
         PlayList playList = playListService.findPlayListById(id);
 
@@ -144,15 +155,5 @@ public class PlayListController {
         playListService.deletePlayList(playList);
 
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-    }
-
-    @PutMapping(path = "/update/{id}")
-    public String updatePlayList(@PathVariable Long id) {
-        return "Updated";
-    }
-
-    @PatchMapping(path = "/patch/{id}")
-    public String PatchPlayList(@PathVariable Long id) {
-        return "Patched";
     }
 }

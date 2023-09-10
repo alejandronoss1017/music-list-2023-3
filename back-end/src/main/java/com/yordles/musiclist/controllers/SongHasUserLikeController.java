@@ -64,11 +64,11 @@ public class SongHasUserLikeController {
 
     /**
      * This method is used to get a songHasUserLike from the database, it is called when a GET
-     * request is made to /songHasUserLike/{id}, it returns a JSON object with the songHasUserLike
+     * request is made to /songHasUserLike/get/{songId}/{userId}, it returns a JSON object with the songHasUserLike
      * that was found in the database.
      * 
-     * @param id The id of the songHasUserLike to be retrieved from the database
-     * 
+     * @param songID The id of the song to be searched
+     * @param userId The id of the user to be searched
      * @return ResponseEntity<songHasUserLike> This returns a JSON object with the songHasUserLike that
      *         was found in the database, otherwise it returns a 404 NOT FOUND response
      *         status to indicate that the requested resource could not be found.
@@ -91,10 +91,11 @@ public class SongHasUserLikeController {
 
     /**
      * This method is used to add a new songHasUserLike to the database, it is called when a
-     * POST request is made to /songHasUserLike/add, it expects a JSON object with the name of
+     * POST request is made to /songHasUserLike/add/{songId}/{userId}, it expects a JSON object with the name of
      * the songHasUserLike.
      * 
-     * @param songHasUserLike The songHasUserLike to be added to the database
+     * @param songID The id of the song to be added
+     * @param userId The id of the user to be added
      * @return ResponseEntity<songHasUserLike> This returns a JSON object with the songHasUserLike that
      *         was added to the database
      * @throws Exception If there is an error adding the songHasUserLike to the database this
@@ -121,9 +122,10 @@ public class SongHasUserLikeController {
 
     /**
      * This method is used to delete a songHasUserLike from the database, it is called when a
-     * DELETE request is made to /songHasUserLike/delete/{id}.
+     * DELETE request is made to /songHasUserLike/delete/{songId}/{userId}.
      * 
-     * @param id The id of the songHasUserLike to be deleted
+     * @param songID The id of the song to be deleted
+     * @param userId The id of the user to be deleted
      * 
      * @return ResponseEntity<songHasUserLike> This returns a JSON object with the songHasUserLike that
      *         was not found in the database, otherwise it returns a 204 NO CONTENT

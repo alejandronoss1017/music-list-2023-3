@@ -18,6 +18,7 @@ import lombok.NonNull;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @NonNull
     private Long id;
@@ -37,7 +38,7 @@ public class User {
     @Column(name = "create_time", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     @NonNull
-    private Timestamp createTime;
+    private Timestamp createTime = new Timestamp(System.currentTimeMillis());
 
     @Column(name = "verified", nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
     private boolean verified = false;

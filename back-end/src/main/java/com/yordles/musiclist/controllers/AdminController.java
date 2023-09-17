@@ -18,11 +18,11 @@ import com.yordles.musiclist.services.AdminService;
 @RestController
 @RequestMapping(path = "/admin")
 public class AdminController {
-    
-     @Autowired
+
+    @Autowired
     private AdminService adminService;
-    
-     /**
+
+    /**
      * This method is used to get all the admins from the database, it is called
      * when a GET request is made to /admin/all, it returns a JSON object with all
      * the admins.
@@ -51,7 +51,7 @@ public class AdminController {
         return new ResponseEntity<>(admin, HttpStatus.OK);
     }
 
-     /**
+    /**
      * This method is used to get a admin by its id, it is called when a GET request
      * is made to /admin/{id}, it returns a JSON object with the admin.
      * 
@@ -125,7 +125,6 @@ public class AdminController {
         return new ResponseEntity<>(adminToUpdate, HttpStatus.OK);
     }
 
-
     /**
      * This method is used to delete an admin from the database, it is called when a
      * DELETE request is made to /admin/delete/{id}.
@@ -149,7 +148,7 @@ public class AdminController {
         if (admin == null) {
             return new ResponseEntity<>(admin, null, HttpStatus.NOT_FOUND);
         }
-    
+
         // Delete the admin
         adminService.deleteAdminById(id);
 

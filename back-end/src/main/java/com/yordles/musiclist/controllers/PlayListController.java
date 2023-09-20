@@ -24,7 +24,7 @@ import com.yordles.musiclist.services.SongService;
 @RestController
 @RequestMapping(path = "/playlist")
 public class PlayListController {
-    
+
     @Autowired
     private PlayListService playListService;
 
@@ -144,7 +144,7 @@ public class PlayListController {
         return "Patched";
     }
 
-        @DeleteMapping(path = "/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<PlayList> deletePlayList(@PathVariable Long id) {
         PlayList playList = playListService.findPlayListById(id);
 

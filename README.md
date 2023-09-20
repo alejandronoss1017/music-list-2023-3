@@ -49,7 +49,7 @@ To run this project, you will need to add the following environment variables
 
 `DB_PASSWORD`
 
-> Optional could be `${SPRING_PROFILES_ACTIVE}`, you can set it to `dev` or `prod`, or just specify it in as a program argument.
+> Optional could be `${SPRING_PROFILES_ACTIVE}`, you can set it to `dev` or `production`, or just specify it in as a program argument.
 
 Go to the back-end project directory
 

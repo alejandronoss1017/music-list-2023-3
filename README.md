@@ -69,7 +69,7 @@ Execute the jar file
 ```bash
   java -jar -Dspring.profiles.active=dev target/music-list-0.0.1-SNAPSHOT.jar
 ```
->Note: If you are using Windows powershell, you need to use double on the program argument, like this: "-Dspring.profiles.active=dev"
+>Note: If you are using Windows powershell, you need to use double quote on the program argument, like this: "-Dspring.profiles.active=dev"
 
 Start the server (Without creating the jar file)
 

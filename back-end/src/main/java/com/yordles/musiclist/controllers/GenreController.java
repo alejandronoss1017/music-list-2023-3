@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yordles.musiclist.models.Genre;
 import com.yordles.musiclist.services.GenreService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * This class is a Rest controller class that will handle the HTTP requests
  * related
@@ -51,6 +53,7 @@ import com.yordles.musiclist.services.GenreService;
  *               request into an instance of the method parameter type.
  * 
  */
+@Slf4j
 @RestController
 @RequestMapping(path = "/genre")
 public class GenreController {
@@ -73,9 +76,12 @@ public class GenreController {
     @GetMapping(path = "/all")
     public ResponseEntity<Iterable<Genre>> getAllGenres() throws Exception {
 
+        log.info("GET request to /genre/all");
+
         Iterable<Genre> genres = genreService.findAllGenres();
 
         if (genres == null) {
+            log.error("No genres found");
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
@@ -103,9 +109,12 @@ public class GenreController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Genre> getGenreById(@PathVariable Long id) throws Exception {
 
+        log.info("GET request to /genre/{}", id);
+
         Genre genre = genreService.findGenreById(id);
 
         if (genre == null) {
+            log.error("Genre with id {} not found", id);
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
@@ -126,9 +135,12 @@ public class GenreController {
     @PostMapping(path = "/add")
     public ResponseEntity<Genre> addNewGenre(@RequestBody Genre genre) throws Exception {
 
+        log.info("POST request to /genre/add with body {}", genre);
+
         Genre genreToSave = genreService.saveGenre(genre);
 
         if (genreToSave == null) {
+            log.error("Genre with name {} already exists", genre.getName());
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
@@ -152,9 +164,13 @@ public class GenreController {
      */
     @PostMapping(path = "/addMany")
     public ResponseEntity<Iterable<Genre>> addNewGenres(@RequestBody Iterable<Genre> genre) throws Exception {
+
+        log.info("POST request to /genre/addMany with body {}", genre);
+
         Iterable<Genre> savedGenres = genreService.saveManyGenres(genre);
 
         if (savedGenres == null) {
+            log.error("Genres already exist");
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
@@ -180,9 +196,13 @@ public class GenreController {
      */
     @PatchMapping(path = "/patch/{id}")
     public ResponseEntity<Genre> patchGenre(@PathVariable Long id, @RequestBody Genre genre) throws Exception {
+
+        log.info("PATCH request to /genre/patch/{} with body {}", id, genre);
+
         Genre genreToPatch = genreService.patchGenre(id, genre);
 
         if (genreToPatch == null) {
+            log.error("Genre with id {} not found", id);
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
@@ -206,9 +226,12 @@ public class GenreController {
     @PutMapping(path = "/update/{id}")
     public ResponseEntity<Genre> updateGenre(@PathVariable Long id, @RequestBody Genre genre) throws Exception {
 
+        log.info("PUT request to /genre/update/{} with body {}", id, genre);
+
         Genre genreToUpdate = genreService.updateGenre(id, genre);
 
         if (genreToUpdate == null) {
+            log.error("Genre with id {} not found", id);
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
@@ -233,9 +256,12 @@ public class GenreController {
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<Genre> deleteGenre(@PathVariable Long id) throws Exception {
 
+        log.info("DELETE request to /genre/delete/{}", id);
+
         Genre genre = genreService.findGenreById(id);
 
         if (genre == null) {
+            log.error("Genre with id {} not found", id);
             return new ResponseEntity<>(genre, null, HttpStatus.NOT_FOUND);
         }
 

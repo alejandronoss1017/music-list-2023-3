@@ -13,7 +13,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class PlayListHasSongService {
-    
+
     @Autowired
     private PlayListHasSongRepository playListHasSongRepository;
 
@@ -25,11 +25,6 @@ public class PlayListHasSongService {
     @Transactional
     public PlayListHasSong findPlayListHasSongById(PlayListHasSongId id) {
         return playListHasSongRepository.findById(id).orElse(null);
-    }
-
-    @Transactional
-    public PlayListHasSong savePlayListHasSong(PlayListHasSong id) {
-        return playListHasSongRepository.save(id);
     }
 
     @Transactional

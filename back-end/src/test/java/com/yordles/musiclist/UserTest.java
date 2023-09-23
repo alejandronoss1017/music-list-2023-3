@@ -10,12 +10,40 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.yordles.musiclist.models.User;
 import com.yordles.musiclist.services.UserService;
 
+/**
+ *
+ * @name UserTest
+ *
+ * @description This class tests the UserService class.
+ * @see com.yordles.musiclist.services.UserService
+ * @version 1.0
+ *
+ * @since 2023-09-22
+ *
+ */
 @SpringBootTest
 public class UserTest {
 
     @Autowired
-    private UserService userService;
+    private UserService userService; // This annotation tells Spring to inject an instance of UserService here.
 
+    /**
+     *
+     * @name testGetAllUsers
+     *
+     * @description This method tests the getAllUsers method from the UserService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetAllUsers() throws Exception {
         // Act
@@ -25,6 +53,24 @@ public class UserTest {
         assertNotNull(responseEntity);
     }
 
+
+    /**
+     *
+     * @name testGetAllUsers
+     *
+     * @description This method tests the getAllUsers method from the UserService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetUsersById() throws Exception {
         // Arrange
@@ -37,6 +83,23 @@ public class UserTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testAddNewUser
+     *
+     * @description This method tests the addNewUser method from the UserService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testAddNewUser() throws Exception {
         // Arrange
@@ -52,6 +115,23 @@ public class UserTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testUpdateUser
+     *
+     * @description This method tests the updateUser method from the UserService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testUpdateUser() {
         // Arrange
@@ -69,6 +149,23 @@ public class UserTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testDeleteUser
+     *
+     * @description This method tests the deleteUser method from the UserService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testDeleteUser() {
         // Arrange

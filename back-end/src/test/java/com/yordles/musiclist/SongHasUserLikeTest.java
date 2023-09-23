@@ -15,18 +15,47 @@ import com.yordles.musiclist.services.SongHasUserLikeService;
 import com.yordles.musiclist.services.SongService;
 import com.yordles.musiclist.services.UserService;
 
+/**
+ *
+ * @name SongHasUserLikeTest
+ *
+ * @description This class tests the SongHasUserLikeService class.
+ * @see com.yordles.musiclist.services.UserService
+ * @version 1.0
+ *
+ * @since 2023-09-22
+ *
+ */
 @SpringBootTest
 public class SongHasUserLikeTest {
 
     @Autowired
-    private SongHasUserLikeService songHasUserLikeService;
+    private SongHasUserLikeService songHasUserLikeService; // This annotation tells Spring to inject an instance
+    // of SongHasUserLikeService here.
 
     @Autowired
-    private SongService songService;
+    private SongService songService; // This annotation tells Spring to inject an instance of SongService here.
 
     @Autowired
-    private UserService userService;
+    private UserService userService; // This annotation tells Spring to inject an instance of UserService here.
 
+    /**
+     *
+     * @name testGetAllSongHasUserLikes
+     *
+     * @description This method tests the getAllSongHasUserLikes method from the SongHasUserLikeService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetAllSongHasUserLikes() throws Exception {
         // Act
@@ -36,6 +65,23 @@ public class SongHasUserLikeTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testGetSongHasUserLikesById
+     *
+     * @description This method tests the getSongHasUserLikesById method from the SongHasUserLikeService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetSongHasUserLikesById() throws Exception {
         // Arrange
@@ -48,6 +94,23 @@ public class SongHasUserLikeTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testAddNewSongHasUserLike
+     *
+     * @description This method tests the addNewSongHasUserLike method from the SongHasUserLikeService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testAddNewSongHasUserLike() throws Exception {
         // Arrange
@@ -61,6 +124,23 @@ public class SongHasUserLikeTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testDeleteSongHasUserLike
+     *
+     * @description This method tests the deleteSongHasUserLike method from the SongHasUserLikeService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testDeleteSongHasUserLike() {
         // Arrange

@@ -15,18 +15,46 @@ import com.yordles.musiclist.services.PlayListHasSongService;
 import com.yordles.musiclist.services.PlayListService;
 import com.yordles.musiclist.services.SongService;
 
+/**
+ *
+ * @name PlayListHasSongTest
+ *
+ * @description This class tests the PlayListHasSongService class.
+ * @see com.yordles.musiclist.services.PlayListHasSongService
+ * @version 1.0
+ *
+ * @since 2023-09-22
+ *
+ */
 @SpringBootTest
 public class PlayListHasSongTest {
 
     @Autowired
-    private SongService songService;
+    private SongService songService; // This annotation tells Spring to inject an instance of SongService here.
 
     @Autowired
-    private PlayListService playListService;
+    private PlayListService playListService; // This annotation tells Spring to inject an instance of PlayListService here.
 
     @Autowired
-    private PlayListHasSongService playListHasSongService;
+    private PlayListHasSongService playListHasSongService; // This annotation tells Spring to inject an instance of PlayListHasSongService here.
 
+    /**
+     *
+     * @name testGetAllPlayListHasSongs
+     *
+     * @description This method tests the getAllPlayListHasSongs method from the PlayListHasSongService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetAllPlayListHasSongs() throws Exception {
         // Act
@@ -36,6 +64,23 @@ public class PlayListHasSongTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testGetPlayListHasSongsById
+     *
+     * @description This method tests the getPlayListHasSongsById method from the PlayListHasSongService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetPlayListHasSongsById() throws Exception {
         // Arrange
@@ -48,6 +93,23 @@ public class PlayListHasSongTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testAddNewPlayListHasSong
+     *
+     * @description This method tests the addNewPlayListHasSong method from the PlayListHasSongService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testAddNewPlayListHasSong() throws Exception {
         // Arrange
@@ -61,6 +123,23 @@ public class PlayListHasSongTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testDeletePlayListHasSong
+     *
+     * @description This method tests the deletePlayListHasSong method from the PlayListHasSongService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testDeletePlayListHasSong() {
         // Arrange

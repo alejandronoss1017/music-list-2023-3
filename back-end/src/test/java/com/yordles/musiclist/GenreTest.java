@@ -10,12 +10,40 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.yordles.musiclist.models.Genre;
 import com.yordles.musiclist.services.GenreService;
 
+/**
+ *
+ * @name GenreTest
+ *
+ * @description This class tests the GenreService class.
+ * @see com.yordles.musiclist.services.GenreService
+ * @version 1.0
+ *
+ * @since 2023-09-22
+ *
+ */
 @SpringBootTest
 public class GenreTest {
 
     @Autowired
-    private GenreService genreService;
+    private GenreService genreService; // This annotation tells Spring to inject an instance of GenreService here.
 
+    /**
+     *
+     * @name testGetAllGenres
+     *
+     * @description This method tests the getAllGenres method from the GenreService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetAllGenres() throws Exception {
         // Act
@@ -25,6 +53,23 @@ public class GenreTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testGetGenresById
+     *
+     * @description This method tests the getGenresById method from the GenreService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetGenresById() throws Exception {
         // Arrange
@@ -37,6 +82,23 @@ public class GenreTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testAddNewGenre
+     *
+     * @description This method tests the addNewGenre method from the GenreService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testAddNewGenre() throws Exception {
         // Arrange
@@ -51,6 +113,23 @@ public class GenreTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testUpdateGenre
+     *
+     * @description This method tests the updateGenre method from the GenreService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testUpdateGenre() {
         // Arrange
@@ -67,6 +146,23 @@ public class GenreTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testDeleteGenre
+     *
+     * @description This method tests the deleteGenreById method from the GenreService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testDeleteGenre() {
         // Arrange

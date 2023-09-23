@@ -12,15 +12,43 @@ import com.yordles.musiclist.models.PlayList;
 import com.yordles.musiclist.services.GenreService;
 import com.yordles.musiclist.services.PlayListService;
 
+/**
+ *
+ * @name PlayListTest
+ *
+ * @description This class tests the PlayListService class.
+ * @see com.yordles.musiclist.services.PlayListService
+ * @version 1.0
+ *
+ * @since 2023-09-22
+ *
+ */
 @SpringBootTest
 public class PlayListTest {
 
     @Autowired
-    private GenreService genreService;
+    private GenreService genreService; // This annotation tells Spring to inject an instance of GenreService here.
 
     @Autowired
-    private PlayListService playListService;
+    private PlayListService playListService; // This annotation tells Spring to inject an instance of PlayListService here.
 
+    /**
+     *
+     * @name testGetAllPlayLists
+     *
+     * @description This method tests the getAllPlayLists method from the PlayListService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetAllPlayLists() throws Exception {
         // Act
@@ -30,6 +58,23 @@ public class PlayListTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testGetPlayListsById
+     *
+     * @description This method tests the getPlayListsById method from the PlayListService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetPlayListsById() throws Exception {
         // Arrange
@@ -42,6 +87,23 @@ public class PlayListTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testAddNewPlayList
+     *
+     * @description This method tests the addNewPlayList method from the PlayListService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testAddNewPlayList() throws Exception {
         // Arrange
@@ -57,6 +119,23 @@ public class PlayListTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testUpdatePlayList
+     *
+     * @description This method tests the updatePlayList method from the PlayListService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testDeletePlayListById() {
         // Arrange
@@ -70,6 +149,23 @@ public class PlayListTest {
         assertNull(deletedPlayList);
     }
 
+    /**
+     *
+     * @name testDeletePlayList
+     *
+     * @description This method tests the deletePlayList method from the PlayListService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testDeletePlayList() {
         // Arrange

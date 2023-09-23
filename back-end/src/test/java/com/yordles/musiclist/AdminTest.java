@@ -13,12 +13,40 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.yordles.musiclist.models.Admin;
 import com.yordles.musiclist.services.AdminService;
 
+/**
+ *
+ * @name AdminTest
+ *
+ * @description This class tests the AdminService class.
+ * @see com.yordles.musiclist.services.AdminService
+ * @version 1.0
+ *
+ * @since 2023-09-22
+ *
+ */
 @SpringBootTest
 public class AdminTest {
 
     @Autowired
-    private AdminService adminService;
+    private AdminService adminService; // This annotation tells Spring to inject an instance of AdminService here.
 
+    /**
+     *
+     * @name testGetAllAdmins
+     *
+     * @description This method tests the getAllAdmins method from the AdminService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetAllAdmins() throws Exception {
         // Act
@@ -28,6 +56,23 @@ public class AdminTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testGetAdminsById
+     *
+     * @description This method tests the getAdminsById method from the AdminService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testGetAdminsByIds() throws Exception {
         // Arrange
@@ -42,6 +87,23 @@ public class AdminTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testAddNewAdmin
+     *
+     * @description This method tests the addNewAdmin method from the AdminService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testAddNewAdmin() throws Exception {
         // Arrange
@@ -57,6 +119,23 @@ public class AdminTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testUpdateAdmin
+     *
+     * @description This method tests the updateAdmin method from the AdminService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testUpdateAdmin() {
         // Arrange
@@ -74,6 +153,23 @@ public class AdminTest {
         assertNotNull(responseEntity);
     }
 
+    /**
+     *
+     * @name testDeleteAdmin
+     *
+     * @description This method tests the deleteAdminById method from the AdminService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
     @Test
     void testDeleteAdmin() {
         // Arrange

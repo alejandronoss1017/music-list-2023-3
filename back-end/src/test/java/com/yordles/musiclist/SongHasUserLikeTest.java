@@ -43,7 +43,8 @@ public class SongHasUserLikeTest {
      *
      * @name testGetAllSongHasUserLikes
      *
-     * @description This method tests the getAllSongHasUserLikes method from the SongHasUserLikeService class.
+     * @description This method tests the getAllSongHasUserLikes method from the
+     *              SongHasUserLikeService class.
      * @param none
      * @return none
      * @throws Exception
@@ -69,7 +70,8 @@ public class SongHasUserLikeTest {
      *
      * @name testGetSongHasUserLikesById
      *
-     * @description This method tests the getSongHasUserLikesById method from the SongHasUserLikeService class.
+     * @description This method tests the getSongHasUserLikesById method from the
+     *              SongHasUserLikeService class.
      * @param none
      * @return none
      * @throws Exception
@@ -96,9 +98,40 @@ public class SongHasUserLikeTest {
 
     /**
      *
+     * @name testGetSongHasUserLikesById
+     *
+     * @description This method tests the getSongHasUserLikesById method from the
+     *              SongHasUserLikeService class.
+     * @param none
+     * @return none
+     * @throws Exception
+     *
+     * @by Carlos Rojas
+     * @version 1.0
+     * @Review by Stiven Ortiz
+     * @State Tested [PASS]
+     *
+     * @since 2023-09-22
+     *
+     */
+    @Test
+    void testGetSongHasUserLikesByIdNull() throws Exception {
+        // Arrange
+        SongHasUserLikeId SongHasUserLikeId = new SongHasUserLikeId(10000L, 100000L);
+
+        // Act
+        SongHasUserLike responseEntity = songHasUserLikeService.findSongHasUserLikeById(SongHasUserLikeId);
+
+        // Assert
+        assertNull(responseEntity);
+    }
+
+    /**
+     *
      * @name testAddNewSongHasUserLike
      *
-     * @description This method tests the addNewSongHasUserLike method from the SongHasUserLikeService class.
+     * @description This method tests the addNewSongHasUserLike method from the
+     *              SongHasUserLikeService class.
      * @param none
      * @return none
      * @throws Exception
@@ -128,7 +161,8 @@ public class SongHasUserLikeTest {
      *
      * @name testDeleteSongHasUserLike
      *
-     * @description This method tests the deleteSongHasUserLike method from the SongHasUserLikeService class.
+     * @description This method tests the deleteSongHasUserLike method from the
+     *              SongHasUserLikeService class.
      * @param none
      * @return none
      * @throws Exception

@@ -33,7 +33,23 @@ Clone the project
   git clone https://github.com/alejandronoss1017/music-list-2023-3
 ```
 
-**Back-end**
+### Back-end
+
+#### Environment Variables
+
+To run this project, you will need to add the following environment variables
+
+`DB_URL`
+
+`DB_PORT`
+
+`DB_SCHEMA`
+
+`DB_USER`
+
+`DB_PASSWORD`
+
+> Optional could be `${SPRING_PROFILES_ACTIVE}`, you can set it to `dev` or `production`, or just specify it in as a program argument.
 
 For more specific instructions check the back-end README [front-end readme](./docs/back-end.md)
 
@@ -43,11 +59,26 @@ Go to the back-end project directory
   cd music-list-2023-3/back-end
 ```
 
-Start the server
+Create a jar file
+
+```bash
+  mvn package
+```
+>Note: You could use -DskipTests argument to skip the tests
+
+Execute the jar file
+
+```bash
+  java -jar -Dspring.profiles.active=dev target/music-list-0.0.1-SNAPSHOT.jar
+```
+>Note: If you are using Windows powershell, you need to use double quote on the program argument, like this: "-Dspring.profiles.active=dev"
+
+Start the server (Without creating the jar file)
 
 ```bash
   mvn spring-boot:run
 ```
+>Note: You could use -Dspring-boot.run.profiles=dev argument to specify the profile
 
 **Front-end**
 

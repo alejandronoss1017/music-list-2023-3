@@ -1,84 +1,16 @@
 <!-- main-page.component.html -->
 <div class="bg-white min-h-screen text-white flex">
   <aside class="bg-yellow-900 p-4 w-64">
-    <!-- Sidebar content -->
-    <div class="flex items-center mb-4">
-      <!-- Use flex and items-center to align the text and image horizontally -->
-      <img
-        src="assets/images/MusicList.svg"
-        alt="Music List"
-        class="w-20 h-20 ml-2"
-      />
-      <div class="text-white text-xl">Music list</div>
-    </div>
-    <nav>
-      <ul>
-        <li class="mb-2">
-          <a href="#" class="text-white hover:text-gray-300">Home</a>
-        </li>
-        <li class="mb-2">
-          <a href="#" class="text-white hover:text-gray-300">Genres</a>
-        </li>
-        <li class="mb-2">
-          <a href="#" class="text-white hover:text-gray-300">Liked Songs</a>
-        </li>
-      </ul>
-    </nav>
+    <shared-sidebar></shared-sidebar>
   </aside>
 
+  <!-- Navbar and component-->
   <div class="flex-1 flex flex-col">
-    <header class="bg-transparent p-4">
-      <div class="container mx-auto flex justify-end items-center">
-        <nav class="space-x-4">
-          <a href="#" class="text-black hover:text-gray-300">Source Code</a>
-          <a href="#" class="text-black hover:text-gray-300">Profile</a>
-        </nav>
-      </div>
-    </header>
-
+    <!-- Navbar -->
+    <shared-navbar></shared-navbar>
+    <!-- Home -->
     <main class="container mx-auto p-4 flex-1">
-      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Sample album card -->
-        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-          <img
-            src="https://via.placeholder.com/300x300"
-            alt="Album"
-            class="w-full h-48 object-cover"
-          />
-          <div class="p-4">
-            <h2 class="text-white font-semibold text-xl mb-2">Album Name</h2>
-            <p class="text-gray-400">Artist Name</p>
-          </div>
-        </div>
-
-        <!-- Repeat similar card elements for other albums -->
-      </section>
-    </main>
-
-    <main class="container mx-auto p-4 flex-1">
-      <section>
-        <!-- Table for the music list -->
-        <table class="min-w-full">
-          <thead>
-            <tr>
-              <th class="text-left text-gray-400">Title</th>
-              <th class="text-left text-gray-400">Artist</th>
-              <th class="text-left text-gray-400">Duration</th>
-              <th class="text-left text-gray-400">Album</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Sample music list row -->
-            <tr>
-              <td class="border-b border-gray-300 text-black">Song Title</td>
-              <td class="border-b border-gray-300 text-black">Artist Name</td>
-              <td class="border-b border-gray-300 text-black">4:20</td>
-              <td class="border-b border-gray-300 text-black">Album Name</td>
-            </tr>
-            <!-- Repeat similar rows for other songs -->
-          </tbody>
-        </table>
-      </section>
+      <router-outlet></router-outlet>
     </main>
   </div>
 </div>

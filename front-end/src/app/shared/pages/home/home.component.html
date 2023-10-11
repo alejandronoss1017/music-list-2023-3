@@ -1,0 +1,26 @@
+<section>
+  <!-- Banner -->
+  <div class="banner">
+    <img src="your-banner-image-url.jpg" alt="Music Banner" />
+  </div>
+
+  <!-- Table for the music list -->
+  <table class="music-table">
+    <thead>
+      <tr>
+        <th class="text-left">Title</th>
+        <th class="text-left">Artist</th>
+        <th class="text-left">Duration</th>
+        <th class="text-left">Album</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let musicItem of musicList">
+        <td>{{ musicItem.title }}</td>
+        <td>{{ musicItem.artist }}</td>
+        <td>{{ musicItem.duration }}</td>
+        <td>{{ musicItem.album }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

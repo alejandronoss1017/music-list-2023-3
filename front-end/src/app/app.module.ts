@@ -6,19 +6,21 @@ import { AppComponent } from './app.component';
 import { ButtonComponent } from './shared/components/button/button.component';
 import { AuthenticationComponent } from './shared/pages/authentication/authentication.component';
 import { MainComponent } from './shared/pages/main/main.component';
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ButtonComponent,
-    AuthenticationComponent,
-    MainComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ButtonComponent,
+        AuthenticationComponent,
+        MainComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SharedModule
+    ]
 })
 export class AppModule { }

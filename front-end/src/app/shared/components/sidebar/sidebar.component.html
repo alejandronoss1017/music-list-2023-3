@@ -1,0 +1,22 @@
+<!-- Sidebar component -->
+<div class="flex items-center mb-4">
+  <img
+    src="assets/images/MusicList.svg"
+    alt="Music List"
+    class="w-20 h-20 ml-2"
+  />
+  <div class="text-white text-xl">Music list</div>
+</div>
+<nav>
+  <ul>
+    <li class="mb-2" [routerLink]="['/main']" routerLinkActive="router-link-active">
+        <span class="text-white hover:text-gray-300" style="cursor: pointer">Home</span>
+    </li>
+    <li class="mb-2" [routerLink]="['/main', 'genre']" routerLinkActive="router-link-active">
+       <span class="text-white hover:text-gray-300" style="cursor: pointer">Genres</span>
+    </li>
+    <li class="mb-2">
+      <span class="text-white hover:text-gray-300" style="cursor: pointer">Liked songs</span>
+    </li>
+  </ul>
+</nav>

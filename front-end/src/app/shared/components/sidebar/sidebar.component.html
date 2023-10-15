@@ -9,13 +9,13 @@
 </div>
 <nav>
   <ul>
-    <li class="mb-2" [routerLink]="['/main']" routerLinkActive="router-link-active">
+    <li class="mb-2" [routerLink]="['/main']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}">
         <span class="text-white hover:text-gray-300" style="cursor: pointer">Home</span>
     </li>
-    <li class="mb-2" [routerLink]="['/main', 'genre']" routerLinkActive="router-link-active">
+    <li class="mb-2" [routerLink]="['/main', 'genre']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}">
        <span class="text-white hover:text-gray-300" style="cursor: pointer">Genres</span>
     </li>
-    <li class="mb-2">
+    <li class="mb-2" [routerLink]="['/main', 'likedsongs']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}">
       <span class="text-white hover:text-gray-300" style="cursor: pointer">Liked songs</span>
     </li>
   </ul>

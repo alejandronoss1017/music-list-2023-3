@@ -4,6 +4,7 @@ import { AuthenticationComponent } from './shared/pages/authentication/authentic
 import { MainComponent } from './shared/pages/main/main.component';
 import { HomeComponent } from './shared/pages/home/home.component';
 import { GenresComponent } from './shared/pages/genres/genres.component';
+import { LikedsongsComponent } from './shared/pages/likedsongs/likedsongs.component';
 
 const routes: Routes = [
   {path: 'authentication', component: AuthenticationComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
        {path: '', component: HomeComponent},
        {path: 'genre', component: GenresComponent}
     ]},
-  {path: '**', redirectTo: '/authentication', pathMatch: 'full'}
+  {path: '**', redirectTo: '/authentication', pathMatch: 'full'},
+  {path: 'likedsongs', component: LikedsongsComponent }
 ];
 
 @NgModule({

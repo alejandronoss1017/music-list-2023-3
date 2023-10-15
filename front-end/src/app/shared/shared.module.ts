@@ -5,6 +5,7 @@ import { GenresComponent } from './pages/genres/genres.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { LikedsongsComponent } from './pages/likedsongs/likedsongs.component';
 
 
 
@@ -13,7 +14,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HomeComponent,
     GenresComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    LikedsongsComponent
   ],
   imports: [
     CommonModule,

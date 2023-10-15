@@ -1,0 +1,8 @@
+.interactive-div {
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.interactive-div:hover {
+  transform: scale(1.05); /* Increase the scale to make it slightly bigger on hover */
+}

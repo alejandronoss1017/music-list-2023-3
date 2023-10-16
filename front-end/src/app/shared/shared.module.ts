@@ -6,6 +6,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LikedsongsComponent } from './pages/likedsongs/likedsongs.component';
+import { SearchComponent } from './pages/search/search.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { ButtonComponent } from './components/button/button.component';
+import { GenrePageComponent } from './pages/genre-page/genre-page.component';
 
 
 
@@ -15,7 +19,11 @@ import { LikedsongsComponent } from './pages/likedsongs/likedsongs.component';
     GenresComponent,
     SidebarComponent,
     NavbarComponent,
-    LikedsongsComponent
+    LikedsongsComponent,
+    SearchComponent,
+    SearchBoxComponent,
+    ButtonComponent,
+    GenrePageComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +32,9 @@ import { LikedsongsComponent } from './pages/likedsongs/likedsongs.component';
   exports: [
     HomeComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchBoxComponent,
+    ButtonComponent
   ]
 })
 export class SharedModule { }

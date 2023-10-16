@@ -7,9 +7,11 @@ import { GenresComponent } from './shared/pages/genres/genres.component';
 import { LikedsongsComponent } from './shared/pages/likedsongs/likedsongs.component';
 import { SearchComponent } from './shared/pages/search/search.component';
 import { GenrePageComponent } from './shared/pages/genre-page/genre-page.component';
+import { SignUpComponent } from './shared/pages/sign-up/sign-up.component';
 
 const routes: Routes = [
   {path: 'authentication', component: AuthenticationComponent},
+  {path: 'signup', component: SignUpComponent},
   {path: 'main', component: MainComponent,
     children:[
         {path: '', component: HomeComponent},

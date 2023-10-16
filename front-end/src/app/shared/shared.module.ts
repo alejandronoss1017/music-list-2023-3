@@ -36,7 +36,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     SidebarComponent,
     NavbarComponent,
     SearchBoxComponent,
-    ButtonComponent
+    ButtonComponent,
   ]
 })
 export class SharedModule { }

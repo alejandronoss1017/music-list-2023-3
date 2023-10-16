@@ -1,0 +1,7 @@
+<div class="flex items-center mb-4">
+    <input type="text" 
+    [placeholder]="placeholder" 
+    class="w-full p-2 border border-black rounded-md text-black"
+    #txtInput
+    (keyup.enter)="emitValue( txtInput.value )"> 
+</div>

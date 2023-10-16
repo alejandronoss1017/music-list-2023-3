@@ -1,51 +1,11 @@
 <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
   <div
-    class="rounded-lg overflow-hidden shadow-lg interactive-div album-card rock-background"
+    class="rounded-lg overflow-hidden shadow-lg interactive-div album-card {{ genre }}-background"
+    *ngFor="let genre of genres"
+    (click)="navigateToGenre(genre)"
   >
     <div class="p-4">
-      <h2 class="text-yellow-500 font-semibold text-xl mb-2">Rock</h2>
+      <h2 class="text-yellow-500 font-semibold text-xl mb-2">{{ genre }}</h2>
     </div>
   </div>
-
-  <div
-    class="rounded-lg overflow-hidden shadow-lg interactive-div album-card pop-background"
-  >
-    <div class="p-4">
-      <h2 class="text-yellow-500 font-semibold text-xl mb-2">Pop</h2>
-    </div>
-  </div>
-
-  <div
-    class="rounded-lg overflow-hidden shadow-lg interactive-div album-card hiphop-background"
-  >
-    <div class="p-4">
-      <h2 class="text-yellow-500 font-semibold text-xl mb-2">Hip-hop/Rap</h2>
-    </div>
-  </div>
-
-  <div
-    class="rounded-lg overflow-hidden shadow-lg interactive-div album-card electronic-background"
-  >
-    <div class="p-4">
-      <h2 class="text-yellow-500 font-semibold text-xl mb-2">Electronic</h2>
-    </div>
-  </div>
-
-  <div
-    class="bg-yellow-700 rounded-lg overflow-hidden shadow-lg interactive-div metal-background"
-  >
-    <div class="p-4">
-      <h2 class="text-yellow-500 font-semibold text-xl mb-2">Metal</h2>
-    </div>
-  </div>
-
-  <div
-    class="bg-yellow-700 rounded-lg overflow-hidden shadow-lg interactive-div vallenato-background"
-  >
-    <div class="p-4">
-      <h2 class="text-yellow-500 font-semibold text-xl mb-2">Vallenato</h2>
-    </div>
-  </div>
-
-  <!-- Repeat similar card elements for other albums -->
 </section>

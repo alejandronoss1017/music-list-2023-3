@@ -1,0 +1,41 @@
+<body>
+  <!-- Top Navbar with MusicList.svg -->
+  <nav class="flex justify-between items-center p-3 bg-yellow-700">
+    <img src="assets/images/MusicList.svg" alt="" class="custom-svg-size" />
+  </nav>
+
+  <!-- Registration Form Section -->
+  <section class="flex flex-col justify-center items-center p-11">
+    <h1 class="font-bold text-dark-purple text-3xl mb-4">Register</h1>
+
+    <!-- Registration Form -->
+    <form class="w-full max-w-sm">
+      <input
+        type="text"
+        class="w-full rounded-xl border-2 border-D1D1D1 p-4 mb-4"
+        placeholder="Username"
+      />
+      <input
+        type="email"
+        class="w-full rounded-xl border-2 border-D1D1D1 p-4 mb-4"
+        placeholder="Email address"
+      />
+      <input
+        type="password"
+        class="w-full rounded-xl border-2 border-D1D1D1 p-4 mb-4"
+        placeholder="Password"
+      />
+
+      <app-button
+        class="w-full"
+        text="Register"
+        routerLink="/main"
+      ></app-button>
+    </form>
+
+    <p class="text-dark-purple mt-4">
+      Already have an account?
+      <span class="text-goldenrod font-bold" [routerLink]="'/authentication'"style="cursor: pointer">Sign up</span>
+    </p>
+  </section>
+</body>

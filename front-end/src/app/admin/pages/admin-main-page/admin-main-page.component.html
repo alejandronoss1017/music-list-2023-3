@@ -1,16 +1,14 @@
 <!-- main-page.component.html -->
-<div class="bg-white min-h-screen text-white flex">
-  <aside class="bg-yellow-900 p-4 w-64">
-    <app-admin-sidebar></app-admin-sidebar>
-  </aside>
 
-  <!-- Navbar and component-->
-  <div class="flex-1 flex flex-col">
-    <!-- Navbar -->
-    <shared-navbar></shared-navbar>
+<div class="flex  min-h-screen">
+  <aside class="bg-yellow-900 p-4 w-64 relative">
+    <div class="fixed h-full">
+      <app-admin-sidebar></app-admin-sidebar>
+    </div>
+  </aside>
+  <!-- Component-->
+  <main class="w-full">
     <!-- Home -->
-    <main class="container mx-auto p-4 flex-1">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
+    <router-outlet></router-outlet>
+  </main>
 </div>

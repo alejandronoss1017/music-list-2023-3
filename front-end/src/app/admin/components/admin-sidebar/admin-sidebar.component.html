@@ -1,0 +1,22 @@
+<!-- Sidebar component -->
+<div class="flex items-center mb-4">
+  <img
+    src="assets/images/MusicList.svg"
+    alt="Music List"
+    class="w-20 h-20 ml-2"
+  />
+  <div class="text-white text-xl">Music list</div>
+</div>
+<nav>
+  <ul>
+    <li class="mb-2">
+        <p class="text-white">ADMIN ACCOUNT</p>
+    </li>
+    <li class="mb-2" [routerLink]="['/admin', 'crudgenres']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}">
+        <span class="text-white hover:text-gray-300" style="cursor: pointer">CRUD Genres</span>
+    </li>
+    <li class="mb-2" [routerLink]="['/admin', 'crudsongs']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}">
+       <span class="text-white hover:text-gray-300" style="cursor: pointer">CRUD Songs</span>
+    </li>
+  </ul>
+</nav>

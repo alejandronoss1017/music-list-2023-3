@@ -2,15 +2,13 @@
 
 <div class="flex  min-h-screen">
   <aside class="bg-yellow-900 p-4 w-64 relative">
-    <div class="fixed">
-      <shared-sidebar></shared-sidebar>
+    <div class="fixed h-full">
+      <shared-sidebar class="h-full bg-black"></shared-sidebar>
     </div>
   </aside>
 
-  <!-- Navbar and component-->
-  <main class="flex flex-col w-full ">
-    <!-- Navbar -->
-    <shared-navbar></shared-navbar>
+  <!-- Component-->
+  <main class="w-full">
     <!-- Home -->
     <router-outlet></router-outlet>
   </main>

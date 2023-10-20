@@ -1,0 +1,11 @@
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-h-full">
+  <div
+    class="rounded-lg overflow-hidden shadow-lg interactive-div album-card {{ genre }}-background"
+    *ngFor="let genre of genres"
+    (click)="navigateToGenre(genre)"
+  >
+    <div class="p-4">
+      <h2 class="text-yellow-500 font-semibold text-xl mb-2">{{ genre }}</h2>
+    </div>
+  </div>
+</section>

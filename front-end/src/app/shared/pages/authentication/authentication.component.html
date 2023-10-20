@@ -1,0 +1,84 @@
+<div class="w-full flex">
+  <div class="md:w-3/5 md:h-screen">
+    <video
+      oncanplay="this.play()"
+      onloadedmetadata="this.muted = true"
+      loop
+      class="h-full w-full object-cover hue-rotate-15 grayscale brightness-50"
+    >
+      <source src="assets/videos/banner-video.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <main
+    class="flex md:flex-col md:h-screen md:w-2/5 justify-between items-center"
+  >
+    <section class="h-full flex flex-col justify-between px-11 py-11">
+      <article
+        class="text-dark-purple w-full flex flex-col p-3 items-start gap-3"
+      >
+        <div class="flex items-center justify-between">
+          <h1 class="font-bold mr-4">Login</h1>
+          <img
+            src="assets/images/MusicList.svg"
+            alt=""
+            class="custom-svg-size"
+          />
+        </div>
+        <h2>Please enter your login details to sign in.</h2>
+      </article>
+
+      <input
+        type="email"
+        class="w-full rounded-xl border-2 border-D1D1D1 p-4"
+        placeholder="Email address"
+      />
+
+      <input
+        type="password"
+        class="w-full rounded-xl border-2 border-D1D1D1 p-4"
+        placeholder="Password"
+      />
+
+      <div
+        class="text-dark-purple flex w-full items-center justify-between px-1"
+      >
+        <span class="flex gap-1 items-center">
+          <input
+            type="checkbox"
+            class="h-4 w-4 accent-russian-violet checked:bg-russian-violet"
+            name=""
+            id=""
+          />
+          <label for="" class="font-poppins"> Keep me logged in</label>
+        </span>
+          <span class="text-goldenrod font-bold" [routerLink]="'/admin'"style="cursor: pointer">Forgot password?</span>
+      </div>
+
+      <app-button [class]="'w-full'" [text]="'Log in'" [routerLink]="'/main'"></app-button>
+
+      <span class="text-dark-purple flex w-full items-center gap-3">
+        <p>Don't have an account?</p>
+          <span class="text-goldenrod font-bold" [routerLink]="'/signup'"style="cursor: pointer">Sign up</span>
+      </span>
+
+      <div class="text-dark-purple flex items-center justify-center w-full">
+        <hr class="flex-grow border-t border-dark-purple inline-block" />
+        <span class="px-5"> Or continue with </span>
+        <hr class="flex-grow border-t border-dark-purple inline-block" />
+      </div>
+
+      <div class="w-full flex gap-16 justify-center">
+        <img
+          src="assets/images/google.svg"
+          alt=""
+          class="lg:min-h-2 lg:max-h-12"
+        />
+        <img
+          src="assets/images/Facebook_f_logo_(2021).svg"
+          alt=""
+          class="lg:min-h-2 lg:max-h-12"
+        />
+      </div>
+    </section>
+  </main>
+</div>

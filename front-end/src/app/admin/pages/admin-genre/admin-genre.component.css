@@ -1,0 +1,6 @@
+/* :host applies stiles for the selector tag
+    declare in the component.ts file
+*/
+:host {
+  @apply flex flex-col w-full h-full bg-[#23304a];
+}

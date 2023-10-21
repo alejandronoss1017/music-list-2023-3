@@ -1,33 +1,99 @@
-<div class="min-h-screen bg-gray-100">
-  <div class="w-full flex justify-center p-4">
-    <button
-      class="p-4 text-center bg-green-500 text-white rounded-lg hover:bg-green-600 hover:text-gray-900 cursor-pointer mx-2"
-      [routerLink]="['/admin', 'crudgenres', 'create']"
-      routerLinkActive="active"
+<!-- Banner -->
+<app-banner [text]="'Welcome to the best music app!'"></app-banner>
+
+<!-- Section content of the view -->
+<section class="flex flex-col items-start self-stretch">
+  <span class="flex px-5 py-3 justify-end self-stretch gap-3">
+    <a
+      routerLink="/admin/genres/create"
+      href=""
+      class="flex justify-center items-center rounded-md hover:bg-green-700"
     >
-      Create
-    </button>
-    <button
-      class="p-4 text-center bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:text-gray-900 cursor-pointer mx-2"
-      [routerLink]="['/admin', 'crudgenres', 'read']"
-      routerLinkActive="active"
-    >
-      Read
-    </button>
-    <button
-      class="p-4 text-center bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 hover:text-gray-900 cursor-pointer mx-2"
-      [routerLink]="['/admin', 'crudgenres', 'update']"
-      routerLinkActive="active"
-    >
-      Update
-    </button>
-    <button
-      class="p-4 text-center bg-red-500 text-white rounded-lg hover:bg-red-600 hover:text-gray-900 cursor-pointer mx-2"
-      [routerLink]="['/admin', 'crudgenres', 'delete']"
-      routerLinkActive="active"
-    >
-      Delete
-    </button>
+      <img src="assets/icons/hero-plus.svg" alt="" width="20px" height="20px" />
+      <h3 class="text-white font-semibold">Add a new genre</h3>
+    </a>
+  </span>
+
+  <!-- Music List (Styled as a Table) -->
+  <div class="overflow-x-auto w-full">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-[#2e3b53]">
+        <tr>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Name
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Artist
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Album
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Duration
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Release date
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Likes
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            11/05/1992
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            666
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            <span class="flex justify-center gap-3">
+              <button
+                class="flex items-center justify-center w-8 h-8 hover:bg-cyan-700 rounded-full"
+              >
+                <img
+                  src="assets/icons/hero-edit.svg"
+                  alt="Edit icon"
+                  width="20px"
+                  height="20px"
+                />
+              </button>
+              <button
+                class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-red-700"
+              >
+                <img
+                  src="assets/icons/hero-trash.svg"
+                  alt="Trash icon"
+                  width="20px"
+                  height="20px"
+                />
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <router-outlet></router-outlet>
-</div>
+</section>

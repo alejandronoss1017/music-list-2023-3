@@ -59,7 +59,6 @@ public class AdminService {
         adminToUpdate.setEmail(admin.getEmail());
         adminToUpdate.setPassword(encodePassword(admin.getPassword()));
         adminToUpdate.setUsername(admin.getUsername());
-        ;
 
         return adminRepository.save(adminToUpdate);
     }

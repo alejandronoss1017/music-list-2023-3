@@ -1,0 +1,96 @@
+<!-- Sidebar component -->
+<div class="h-full flex flex-col justify-between">
+  <div class="flex items-center mb-4">
+    <img
+      src="assets/images/MusicList.svg"
+      alt="Music List"
+      class="w-20 h-20 ml-2"
+    />
+    <div class="text-white text-xl">Music list</div>
+  </div>
+  <nav>
+    <!-- TODO: Usar ngfor para esta lista -->
+    <ul>
+      <li
+        class="mb-2 cursor-pointer hover:bg-orange-500 hover:text-gray-300"
+        [routerLink]="['/main']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="text-white flex items-center gap-3">
+          <img src="assets/icons/hero-home.svg" alt="Home icon" class="h-8" />
+          <p>Home</p>
+        </span>
+      </li>
+      <li
+        class="mb-2 cursor-pointer hover:bg-orange-500 hover:text-gray-300"
+        [routerLink]="['/main', 'genre']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="text-white flex items-center gap-3">
+          <img
+            src="assets/icons/hero-music.svg"
+            alt="Genres icon"
+            class="h-8"
+          />
+          <p>Genres</p>
+        </span>
+      </li>
+      <li
+        class="mb-2 cursor-pointer hover:bg-orange-500 hover:text-gray-300"
+        [routerLink]="['/main', 'likedsongs']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="text-white flex items-center gap-3">
+          <img
+            src="assets/icons/hero-heart.svg"
+            alt="Liked songs icon"
+            class="h-8"
+          />
+          <p>Liked songs</p>
+        </span>
+      </li>
+      <li
+        class="mb-2 cursor-pointer hover:bg-orange-500 hover:text-gray-300"
+        [routerLink]="['/main', 'search']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="text-white flex items-center gap-3">
+          <img
+            src="assets/icons/hero-magnifying-glass.svg"
+            alt="Search icon"
+            class="h-8"
+          />
+          <p>Search</p>
+        </span>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="flex flex-col pb-8 gap-4">
+    <span class="hover:bg-orange-600 rounded-lg">
+      <a
+        class="flex items-center gap-2"
+        href="https://github.com/alejandronoss1017/music-list-2023-3"
+        target="_blank"
+      >
+        <img
+          src="assets/images/github-original.svg"
+          alt="Github logo"
+          class="h-10"
+        />
+        <p class="text-white">Source code</p>
+      </a>
+    </span>
+    <button
+      class="w-full rounded-xl p-4 font-poppins text-white text-xl font-semibold shadow-xl transition duration-500 ease-in-out bg-red-600 hover:bg-red-700"
+    >
+      <span [routerLink]="'/authentication'" style="cursor: pointer"
+        >Sing out</span
+      >
+    </button>
+  </div>
+</div>

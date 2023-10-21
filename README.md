@@ -51,6 +51,8 @@ To run this project, you will need to add the following environment variables
 
 > Optional could be `${SPRING_PROFILES_ACTIVE}`, you can set it to `dev` or `production`, or just specify it in as a program argument.
 
+For more specific instructions check the back-end README [front-end readme](./docs/back-end.md)
+
 Go to the back-end project directory
 
 ```bash
@@ -79,6 +81,8 @@ Start the server (Without creating the jar file)
 >Note: You could use -Dspring-boot.run.profiles=dev argument to specify the profile
 
 **Front-end**
+
+For more specific instructions check the front-end README [front-end readme](./docs/front-end.md)
 
 Go to the front-end directory
 

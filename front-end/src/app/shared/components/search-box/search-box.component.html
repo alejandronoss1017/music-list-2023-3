@@ -1,7 +1,15 @@
-<div class="flex items-center mb-4">
-    <input type="text" 
-    [placeholder]="placeholder" 
+<div class="flex items-center mb-4 gap-4">
+  <img
+    src="assets/icons/hero-magnifying-glass.svg"
+    alt="Search icon"
+    width="24px"
+    height="24px"
+  />
+  <input
+    type="text"
+    [placeholder]="placeholder"
     class="w-full p-2 border border-black rounded-md text-black"
     #txtInput
-    (keyup.enter)="emitValue( txtInput.value )"> 
+    (keyup.enter)="emitValue(txtInput.value)"
+  />
 </div>

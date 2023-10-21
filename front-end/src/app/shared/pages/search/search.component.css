@@ -1,16 +1,7 @@
-.banner {
-  text-align: center;
-  padding: 20px;
-  background-color: #f7f5f0; /* Light beige background color */
-  color: #2c2926; /* Dark brown text color */
+:host {
+  @apply flex flex-col w-full h-full bg-[#23304a];
 }
 
-.banner img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
 
 .music-table {
   color: #2c2926; /* Dark brown text color */

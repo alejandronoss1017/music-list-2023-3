@@ -1,45 +1,27 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Genre } from 'src/types/Genre';
+import { GenreService } from '../../services/genres/genre.service';
 
 @Component({
   selector: 'shared-genres',
   templateUrl: './genres.component.html',
   styleUrls: ['./genres.component.css'],
 })
-export class GenresComponent {
-  genres: string[] = [
-    'rock',
-    'pop',
-    'hiphop',
-    'electronic',
-    'metal',
-    'vallenato',
-    'reggaeton',
-    'trap',
-    'salsa',
-    'ranchera',
-    'cumbia',
-    'merengue',
-    'bachata',
-    'balada',
-    'bolero',
-    'tango',
-    'jazz',
-    'blues',
-    'soul',
-    'funk',
-    'country',
-    'reggae',
-    'ska',
-    'punk',
-    'indie',
-    'alternativo',
-    'clásica',
-  ];
+export class GenresComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  genres: Genre[] = [];
 
-  navigateToGenre(genreOMG: string): void {
-    this.router.navigate(['/genre', genreOMG]);
+  constructor(private genreService: GenreService) {}
+
+  ngOnInit(): void {
+    this.genreService.getGenres().subscribe((genres: any) => {
+      console.log(genres);
+      this.genres = genres;
+    });
+  }
+
+
+  navigateToGenre(genre: string) {
+    console.log(genre);
   }
 }

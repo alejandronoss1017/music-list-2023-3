@@ -1,35 +1,87 @@
-<section>
-  <!-- Banner -->
-  <div class="banner">
-  </div>
-  <h2 class="text-amber-900 p-3">Your liked songs</h2>
+<!-- Banner -->
+<app-banner/>
+
+<!-- Section content of the view -->
+<section class="flex flex-col items-start self-stretch">
+  <span class="flex px-5 py-3 justify-end self-stretch gap-3">
+    <h2 class="text-white font-semibold">You have a nice taste!</h2>
+  </span>
+
   <!-- Music List (Styled as a Table) -->
-  <table class="music-table">
-    <thead>
-      <tr class="music-header">
-        <th class="music-cell-title"># Title</th>
-        <th class="music-cell-title">Artist</th>
-        <th class="music-cell-title">Album</th>
-        <th class="music-cell-title">Duration</th>
-        <th class="music-cell-title">Favorite</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let musicItem of musicList; let i = index" class="music-row">
-        <td class="music-cell">{{ musicItem.title }}</td>
-        <td class="music-cell">{{ musicItem.artist }}</td>
-        <td class="music-cell">{{ musicItem.album }}</td>
-        <td class="music-cell">{{ musicItem.duration }}</td>
-        <td class="music-cell">
-          <!-- Heart Icon -->
+  <div class="overflow-x-auto w-full">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-[#2e3b53]">
+        <tr>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Name
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Artist
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Album
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Duration
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Release date
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
             <img
-            class="h-6 w-6 cursor-pointer"
-            [src]=" musicItem.favorite ? 'assets/icons/hero-heart-solid.svg' : 'assets/icons/hero-heart-outlined-gray.svg'"
-            alt="Heart Icon"
-            (click)="toggleHeartColor(musicItem)"
+              src="assets/icons/hero-heart-solid.svg"
+              alt="Heart Icon"
+              width="24px"
+              height="24px"
             />
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let musicItem of musicList; let i = index">
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ musicItem.title }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ musicItem.artist }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ musicItem.album }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ musicItem.duration }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            11/05/1992
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            <img
+              [src]="
+                musicItem.favorite
+                  ? 'assets/icons/hero-heart-solid.svg'
+                  : 'assets/icons/hero-heart.svg'
+              "
+              alt="Heart Icon"
+              width="24px"
+              height="24px"
+              (click)="toggleHeartColor(musicItem)"
+              class="cursor-pointer"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>

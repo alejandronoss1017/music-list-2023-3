@@ -6,15 +6,11 @@ import { AdminSongComponent } from './pages/admin-song/admin-song.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
 import { SharedModule } from "../shared/shared.module";
 import { RouterModule } from '@angular/router';
-import { GenreCComponent } from './pages/genre-c/genre-c.component';
-import { GenreDComponent } from './pages/genre-d/genre-d.component';
-import { GenreRComponent } from './pages/genre-r/genre-r.component';
-import { GenreUComponent } from './pages/genre-u/genre-u.component';
-import { SongCComponent } from './pages/song-c/song-c.component';
-import { SongUComponent } from './pages/song-u/song-u.component';
-import { SongRComponent } from './pages/song-r/song-r.component';
-import { SongDComponent } from './pages/song-d/song-d.component';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms';
+import { AdminUpdateSongComponent } from './pages/admin-update-song/admin-update-song.component';
+import { AdminUpdateGenreComponent } from './pages/admin-update-genre/admin-update-genre.component';
+import { AdminCreateGenreComponent } from './pages/admin-create-genre/admin-create-genre.component';
+import { AdminCreateSongComponent } from './pages/admin-create-song/admin-create-song.component';
 
 
 @NgModule({
@@ -23,14 +19,10 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
         AdminGenreComponent,
         AdminSongComponent,
         AdminSidebarComponent,
-        GenreCComponent,
-        GenreDComponent,
-        GenreRComponent,
-        GenreUComponent,
-        SongCComponent,
-        SongUComponent,
-        SongRComponent,
-        SongDComponent,
+        AdminUpdateSongComponent,
+        AdminUpdateGenreComponent,
+        AdminCreateGenreComponent,
+        AdminCreateSongComponent,
     ],
     imports: [
         CommonModule,
@@ -38,8 +30,5 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
         RouterModule,
         FormsModule
     ],
-    exports: [
-        AdminSidebarComponent
-    ]
 })
 export class AdminModule { }

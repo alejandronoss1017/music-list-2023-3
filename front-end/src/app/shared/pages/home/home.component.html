@@ -1,5 +1,5 @@
 <!-- Banner -->
-<app-banner [text]="'Welcome to the best music app!'"/>
+<app-banner [text]="'Welcome to the best music app!'" />
 
 <!-- Section content of the view -->
 <section class="flex flex-col items-start self-stretch">
@@ -57,7 +57,7 @@
       <tbody class="divide-y divide-gray-200">
         <tr *ngFor="let musicItem of musicList; let i = index">
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-            {{ musicItem.title }}
+            {{ musicItem.name }}
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
             {{ musicItem.artist }}
@@ -66,13 +66,13 @@
             {{ musicItem.album }}
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-            {{ musicItem.duration }}
+            {{ musicItem.duration | formatDuration }}
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-            11/05/1992
+            {{ musicItem.releaseDate | date : "dd/MM/yyyy" }}
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-            666
+            {{ musicItem.likes }}
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
             <img

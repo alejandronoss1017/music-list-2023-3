@@ -21,48 +21,55 @@ import { SongDComponent } from './admin/pages/song-d/song-d.component';
 import { GenreDComponent } from './admin/pages/genre-d/genre-d.component';
 
 const routes: Routes = [
-  {path: 'authentication', component: AuthenticationComponent},
-  {path: 'signup', component: SignUpComponent},
-  {path: 'main', component: MainComponent,
-    children:[
-        {path: '', component: HomeComponent},
-        {path: 'genre', component: GenresComponent,
-            children: [
-              {path: ':genre', component: GenrePageComponent}
-            ]
-          },
-        {path: 'likedsongs', component: LikedsongsComponent},
-        {path: 'search', component: SearchComponent}
-    ]},
-  {path: 'admin', component: AdminMainPageComponent,
-    children:[
-      {path: 'crudgenres', component: AdminGenreComponent,
-        children: 
-          [
-            {path: '', component: GenreCComponent},
-            {path: 'create', component: GenreCComponent},
-            {path: 'read', component: GenreRComponent},
-            {path: 'update', component: GenreUComponent},
-            {path: 'delete', component: GenreDComponent},
-          ]
+  { path: 'authentication', component: AuthenticationComponent },
+  { path: 'signup', component: SignUpComponent },
+  {
+    path: 'main',
+    component: MainComponent,
+    children: [
+      { path: '', component: HomeComponent },
+      {
+        path: 'genres',
+        component: GenresComponent,
+        children: [{ path: ':genre', component: GenrePageComponent }],
       },
-      {path: 'crudsongs', component: AdminSongComponent,
-        children: 
-          [
-            {path: '', component: SongCComponent},
-            {path: 'create', component: SongCComponent},
-            {path: 'read', component: SongRComponent},
-            {path: 'update', component: SongUComponent},
-            {path: 'delete', component: SongDComponent},
-          ]          
-        }
-      ]
+      { path: 'likedsongs', component: LikedsongsComponent },
+      { path: 'search', component: SearchComponent },
+    ],
   },
-  {path: '**', redirectTo: '/authentication', pathMatch: 'full'},
+  {
+    path: 'admin',
+    component: AdminMainPageComponent,
+    children: [
+      {
+        path: 'crudgenres',
+        component: AdminGenreComponent,
+        children: [
+          { path: '', component: GenreCComponent },
+          { path: 'create', component: GenreCComponent },
+          { path: 'read', component: GenreRComponent },
+          { path: 'update', component: GenreUComponent },
+          { path: 'delete', component: GenreDComponent },
+        ],
+      },
+      {
+        path: 'crudsongs',
+        component: AdminSongComponent,
+        children: [
+          { path: '', component: SongCComponent },
+          { path: 'create', component: SongCComponent },
+          { path: 'read', component: SongRComponent },
+          { path: 'update', component: SongUComponent },
+          { path: 'delete', component: SongDComponent },
+        ],
+      },
+    ],
+  },
+  { path: '**', redirectTo: '/authentication', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

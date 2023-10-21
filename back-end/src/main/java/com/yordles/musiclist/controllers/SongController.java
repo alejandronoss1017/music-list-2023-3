@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/song")
+@CrossOrigin(origins = "*")
 public class SongController {
 
     @Autowired
@@ -124,14 +125,14 @@ public class SongController {
      */
     @PutMapping(path = "/update/{id}")
     public ResponseEntity<String> updateSongById(@PathVariable Long id, @RequestBody Song song) throws Exception {
-            
-            Song songToUpdate = songService.updateSong(id, song);
-    
-            if (songToUpdate == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-    
-            return new ResponseEntity<>(HttpStatus.OK);
+
+        Song songToUpdate = songService.updateSong(id, song);
+
+        if (songToUpdate == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**

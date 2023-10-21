@@ -1,14 +1,12 @@
 <!-- main-page.component.html -->
 
-<div class="flex  min-h-screen">
-  <aside class="bg-yellow-900 p-4 w-64 relative">
-    <div class="fixed h-full">
-      <app-admin-sidebar></app-admin-sidebar>
-    </div>
-  </aside>
+<div class="flex self-stretch">
+  <!-- Sidebar -->
+  <app-admin-sidebar/>
+
   <!-- Component-->
-  <main class="w-full">
-    <!-- Home -->
-    <router-outlet></router-outlet>
+  <main class="w-5/6 flex flex-col items-start self-stretch">
+    <!-- <router-outlet /> -->
+    <app-admin-create-song></app-admin-create-song>
   </main>
 </div>

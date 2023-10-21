@@ -11,6 +11,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { ButtonComponent } from './components/button/button.component';
 import { GenrePageComponent } from './pages/genre-page/genre-page.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { BannerComponent } from './components/banner/banner.component';
 
 
 
@@ -26,6 +27,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     ButtonComponent,
     GenrePageComponent,
     SignUpComponent,
+    BannerComponent,
   ],
   imports: [
     CommonModule,

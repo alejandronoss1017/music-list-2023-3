@@ -1,0 +1,11 @@
+<div class="flex items-end banner">
+
+  <!-- If text is null don't render the H1 -->
+  <ng-container *ngIf="text">
+    <h1 class="text-white text-4xl font-bold pl-4">
+      Nice to see you again,
+      <br />
+      {{ text }}
+    </h1>
+  </ng-container>
+</div>

@@ -1,96 +1,113 @@
-<!-- Sidebar component -->
-<div class="h-full flex flex-col justify-between">
-  <div class="flex items-center mb-4">
-    <img
-      src="assets/images/MusicList.svg"
-      alt="Music List"
-      class="w-20 h-20 ml-2"
-    />
-    <div class="text-white text-xl">Music list</div>
-  </div>
-  <nav>
-    <!-- TODO: Usar ngfor para esta lista -->
-    <ul>
-      <li
-        class="mb-2 cursor-pointer hover:bg-orange-500 hover:text-gray-300"
-        [routerLink]="['/main']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <span class="text-white flex items-center gap-3">
-          <img src="assets/icons/hero-home.svg" alt="Home icon" class="h-8" />
-          <p>Home</p>
-        </span>
-      </li>
-      <li
-        class="mb-2 cursor-pointer hover:bg-orange-500 hover:text-gray-300"
-        [routerLink]="['/main', 'genre']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <span class="text-white flex items-center gap-3">
+<aside class="h-full">
+  <div class="flex flex-col h-full">
+    <div class="flex items-center justify-center py-8">
+      <img
+        src="assets/images/MusicList-white.svg"
+        alt="Music list logo"
+        width="96px"
+        height="96px"
+      />
+      <h3 class="text-white font-bold">Music list</h3>
+    </div>
+    <div
+      class="flex flex-col h-full justify-between items-start self-stretch p-4"
+    >
+      <nav class="flex flex-col items-start justify-between w-full">
+        <a
+          routerLink="/main"
+          href=""
+          class="flex w-full py-3 gap-3 rounded-md hover:bg-[#181648]"
+          [class.selected]="isCurrentRoute('/main')"
+        >
+          <img
+            src="assets/icons/hero-home.svg"
+            alt="Home icon"
+            width="24px"
+            height="24px"
+          />
+          <span class="text-white">Home</span>
+        </a>
+        <a
+          routerLink="genres"
+          href=""
+          class="flex w-full py-3 gap-3 rounded-md hover:bg-[#181648]"
+          [class.selected]="isCurrentRoute('/main/genres')"
+        >
           <img
             src="assets/icons/hero-music.svg"
             alt="Genres icon"
-            class="h-8"
+            width="24px"
+            height="24px"
           />
-          <p>Genres</p>
-        </span>
-      </li>
-      <li
-        class="mb-2 cursor-pointer hover:bg-orange-500 hover:text-gray-300"
-        [routerLink]="['/main', 'likedsongs']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <span class="text-white flex items-center gap-3">
+          <span class="text-white">Genres</span>
+        </a>
+        <a
+          routerLink="/main"
+          href=""
+          class="flex w-full py-3 gap-3 rounded-md hover:bg-[#181648]"
+        >
+          <img
+            src="assets/icons/hero-users-group.svg"
+            alt="Artists icon"
+            width="24px"
+            height="24px"
+          />
+          <span class="text-white">Artists</span>
+        </a>
+        <a
+          routerLink="likedsongs"
+          href=""
+          class="flex w-full py-3 gap-3 rounded-md hover:bg-[#181648]"
+          [class.selected]="isCurrentRoute('/main/likedsongs')"
+        >
           <img
             src="assets/icons/hero-heart.svg"
-            alt="Liked songs icon"
-            class="h-8"
+            alt="Favorites icon"
+            width="24px"
+            height="24px"
           />
-          <p>Liked songs</p>
-        </span>
-      </li>
-      <li
-        class="mb-2 cursor-pointer hover:bg-orange-500 hover:text-gray-300"
-        [routerLink]="['/main', 'search']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <span class="text-white flex items-center gap-3">
+          <span class="text-white">Favorites</span>
+        </a>
+        <a
+          routerLink="search"
+          href=""
+          class="flex w-full py-3 gap-3 rounded-md hover:bg-[#181648]"
+          [class.selected]="isCurrentRoute('/main/search')"
+        >
           <img
             src="assets/icons/hero-magnifying-glass.svg"
             alt="Search icon"
-            class="h-8"
+            width="24px"
+            height="24px"
           />
-          <p>Search</p>
-        </span>
-      </li>
-    </ul>
-  </nav>
-
-  <div class="flex flex-col pb-8 gap-4">
-    <span class="hover:bg-orange-600 rounded-lg">
+          <span class="text-white">Search</span>
+        </a>
+        <a
+          href="https://github.com/alejandronoss1017/music-list-2023-3"
+          target="_blank"
+          class="flex w-full py-3 gap-3 rounded-md hover:bg-[#181648]"
+        >
+          <img
+            src="assets/icons/github-original.svg"
+            alt="GitHub icon"
+            width="24px"
+            height="24px"
+          />
+          <span class="text-white">Source code</span>
+        </a>
+      </nav>
       <a
-        class="flex items-center gap-2"
-        href="https://github.com/alejandronoss1017/music-list-2023-3"
-        target="_blank"
+        href=""
+        class="flex justify-center items-center self-stretch py-3 gap-3 w-full rounded-md hover:bg-[#181648]"
       >
         <img
-          src="assets/images/github-original.svg"
-          alt="Github logo"
-          class="h-10"
+          src="assets/icons/hero-logout.svg"
+          alt="Logout icon"
+          width="24px"
+          height="24px"
         />
-        <p class="text-white">Source code</p>
+        <span class="text-white">Log out</span>
       </a>
-    </span>
-    <button
-      class="w-full rounded-xl p-4 font-poppins text-white text-xl font-semibold shadow-xl transition duration-500 ease-in-out bg-red-600 hover:bg-red-700"
-    >
-      <span [routerLink]="'/authentication'" style="cursor: pointer"
-        >Sing out</span
-      >
-    </button>
+    </div>
   </div>
-</div>
+</aside>

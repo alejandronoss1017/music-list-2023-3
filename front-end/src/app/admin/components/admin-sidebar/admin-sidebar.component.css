@@ -1,8 +1,7 @@
-li {
-  border-radius: 0.4rem;
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
+:host {
+  @apply h-screen sticky top-0 w-1/6 items-start gap-3 bg-[#0c0a3e];
 }
 
-.active {
-  background-color: #e06411;
+.selected {
+  @apply bg-[#181648];
 }

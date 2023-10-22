@@ -103,5 +103,5 @@ build/
 **/Thumbs.db
 
 # Evironment files Angular
-**/src/environments/*
-!**/src/environments/environment.example.ts
+**/src/environment/*
+!**/src/environment/environment.example.ts

@@ -4,7 +4,7 @@ import { AuthenticationComponent } from './shared/pages/authentication/authentic
 import { MainComponent } from './shared/pages/main/main.component';
 import { HomeComponent } from './shared/pages/home/home.component';
 import { GenresComponent } from './shared/pages/genres/genres.component';
-import { LikedsongsComponent } from './shared/pages/likedsongs/likedsongs.component';
+import { LikedSongsComponent } from './shared/pages/liked-songs/liked-songs.component';
 import { SearchComponent } from './shared/pages/search/search.component';
 import { GenrePageComponent } from './shared/pages/genre-page/genre-page.component';
 import { SignUpComponent } from './shared/pages/sign-up/sign-up.component';
@@ -17,6 +17,7 @@ import { AdminUpdateGenreComponent } from './admin/pages/admin-update-genre/admi
 import { AdminCreateGenreComponent } from './admin/pages/admin-create-genre/admin-create-genre.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/authentication', pathMatch: 'full' },
   { path: 'authentication', component: AuthenticationComponent },
   { path: 'signup', component: SignUpComponent },
   {
@@ -24,12 +25,9 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: '', component: HomeComponent },
-      {
-        path: 'genres',
-        component: GenresComponent,
-        children: [{ path: ':genre', component: GenrePageComponent }],
-      },
-      { path: 'likedsongs', component: LikedsongsComponent },
+      { path: 'genres', component: GenresComponent },
+      { path: 'genres/:genre', component: GenrePageComponent },
+      { path: 'liked-songs', component: LikedSongsComponent },
       { path: 'search', component: SearchComponent },
     ],
   },
@@ -37,22 +35,12 @@ const routes: Routes = [
     path: 'admin',
     component: AdminMainPageComponent,
     children: [
-      {
-        path: '',
-        component: AdminSongComponent,
-        children: [
-          { path: 'update/:id', component: AdminUpdateSongComponent },
-          { path: 'create', component: AdminCreateSongComponent },
-        ],
-      },
-      {
-        path: 'genres',
-        component: AdminGenreComponent,
-        children: [
-          { path: 'update/:id', component: AdminUpdateGenreComponent },
-          { path: 'create', component: AdminCreateGenreComponent },
-        ],
-      },
+      { path: '', component: AdminSongComponent },
+      { path: 'create', component: AdminCreateSongComponent },
+      { path: 'update/:id', component: AdminUpdateSongComponent },
+      { path: 'genres', component: AdminGenreComponent },
+      { path: 'genres/update/:id', component: AdminUpdateGenreComponent },
+      { path: 'genres/create', component: AdminCreateGenreComponent },
     ],
   },
   { path: '**', redirectTo: '/authentication', pathMatch: 'full' },

@@ -4,8 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { GenresComponent } from './pages/genres/genres.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { LikedsongsComponent } from './pages/likedsongs/likedsongs.component';
+import { LikedSongsComponent } from './pages/liked-songs/liked-songs.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { ButtonComponent } from './components/button/button.component';
@@ -14,15 +13,12 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { FormatDurationPipe } from './pipes/format-duration.pipe';
 
-
-
 @NgModule({
   declarations: [
     HomeComponent,
     GenresComponent,
     SidebarComponent,
-    NavbarComponent,
-    LikedsongsComponent,
+    LikedSongsComponent,
     SearchComponent,
     SearchBoxComponent,
     ButtonComponent,
@@ -31,17 +27,13 @@ import { FormatDurationPipe } from './pipes/format-duration.pipe';
     BannerComponent,
     FormatDurationPipe,
   ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
+  imports: [CommonModule, RouterModule],
   exports: [
     HomeComponent,
     SidebarComponent,
-    NavbarComponent,
     SearchBoxComponent,
     ButtonComponent,
     BannerComponent,
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

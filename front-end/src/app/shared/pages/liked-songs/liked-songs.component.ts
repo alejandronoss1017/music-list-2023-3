@@ -3,11 +3,11 @@ import { Song } from 'src/types/Song';
 import { SongService } from '../../services/songs/song.service';
 
 @Component({
-  selector: 'app-likedsongs',
-  templateUrl: './likedsongs.component.html',
-  styleUrls: ['./likedsongs.component.css'],
+  selector: 'app-liked-songs',
+  templateUrl: './liked-songs.component.html',
+  styleUrls: ['./liked-songs.component.css'],
 })
-export class LikedsongsComponent implements OnInit {
+export class LikedSongsComponent implements OnInit {
   musicList: Song[] = [];
 
   constructor(private songService: SongService) {}

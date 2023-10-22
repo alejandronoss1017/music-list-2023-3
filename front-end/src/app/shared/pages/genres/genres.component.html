@@ -8,7 +8,7 @@
       genre.name.toLocaleLowerCase()
     }}-background"
     *ngFor="let genre of genres"
-    (click)="navigateToGenre(genre.name.toLowerCase())"
+    routerLink="rock"
   >
     <div class="p-4">
       <h2 class="text-[#d79b1f] stroke-black font-semibold text-xl mb-2">

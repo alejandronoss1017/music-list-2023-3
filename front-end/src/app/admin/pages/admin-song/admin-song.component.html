@@ -5,8 +5,7 @@
 <section class="flex flex-col items-start self-stretch">
   <span class="flex px-5 py-3 justify-end self-stretch gap-3">
     <a
-      routerLink="/admin/create"
-      href=""
+      routerLink="create"
       class="flex justify-center items-center rounded-md hover:bg-green-700"
     >
       <img src="assets/icons/hero-plus.svg" alt="" width="20px" height="20px" />
@@ -72,6 +71,7 @@
             <span class="flex justify-center gap-3">
               <button
                 class="flex items-center justify-center w-8 h-8 hover:bg-cyan-700 rounded-full"
+                routerLink="update/1"
               >
                 <img
                   src="assets/icons/hero-edit.svg"
@@ -80,7 +80,6 @@
                   height="20px"
                 />
               </button>
-              <!-- <app-update-song-modal *ngIf="showModal"></app-update-song-modal> -->
               <button
                 class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-red-700"
               >

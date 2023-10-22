@@ -101,3 +101,7 @@ build/
 # System files
 **/.DS_Store
 **/Thumbs.db
+
+# Evironment files Angular
+**/src/environments/*
+!**/src/environments/environment.example.ts

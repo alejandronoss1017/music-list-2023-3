@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GenreService {
-  private apiUrl = 'http://localhost:8080/genre';
+  private apiUrl = environment.backendUrl + 'genre';
 
   constructor(private http: HttpClient) {}
 

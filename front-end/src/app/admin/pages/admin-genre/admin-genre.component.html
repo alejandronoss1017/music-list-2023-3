@@ -26,27 +26,7 @@
           <th
             class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
           >
-            Artist
-          </th>
-          <th
-            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-          >
-            Album
-          </th>
-          <th
-            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-          >
-            Duration
-          </th>
-          <th
-            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-          >
-            Release date
-          </th>
-          <th
-            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-          >
-            Likes
+            Description
           </th>
           <th
             class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
@@ -56,22 +36,18 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
-        <tr>
-          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
-          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
-          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
-          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
+        <tr *ngFor="let genre of genres; let i = index">
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-            11/05/1992
+            {{ genre.name }}
           </td>
-          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-            666
+          <td class="px-6 py-4 w-1/3 text-center text-white whitespace-normal">
+            {{ genre.description }}
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
             <span class="flex justify-center gap-3">
               <button
                 class="flex items-center justify-center w-8 h-8 hover:bg-cyan-700 rounded-full"
-                routerLink="update/1"
+                (click)="goToUpdateGenre(genre)"
               >
                 <img
                   src="assets/icons/hero-edit.svg"
@@ -82,6 +58,7 @@
               </button>
               <button
                 class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-red-700"
+                (click)="deleteGenre(genre)"
               >
                 <img
                   src="assets/icons/hero-trash.svg"

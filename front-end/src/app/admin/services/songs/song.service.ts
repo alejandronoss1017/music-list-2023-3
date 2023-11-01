@@ -11,18 +11,6 @@ export class SongService {
 
   constructor(private http: HttpClient) {}
 
-  createSong(song: Song): boolean {
-    try {
-      song.duration = this.formatDuration(song.duration as string);
-
-      this.http.post(`${this.apiUrl}/${'add'}`, song).subscribe();
-      return true;
-    } catch (error) {
-      console.log(error);
-    }
-    return false;
-  }
-
   formatDuration(duration: string): number {
     const durationParts = duration.split(':');
 
@@ -33,6 +21,28 @@ export class SongService {
   }
 
   getSongById(id: string) {
-    return this.http.get(`${this.apiUrl}/${'get'}/${id}`);
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
+  createSong(song: Song): boolean {
+    try {
+      if (typeof song.duration === 'string') {
+        song.duration = this.formatDuration(song.duration as string);
+      }
+
+      this.http.post(`${this.apiUrl}/${'add'}`, song).subscribe();
+      return true;
+    } catch (error) {
+      console.log(error);
+    }
+    return false;
+  }
+
+  updateSong(id: number, song: Song) {
+    return this.http.put(`${this.apiUrl}/update/${id}`, song);
+  }
+
+  deleteSong(id: number) {
+    return this.http.delete(`${this.apiUrl}/delete/${id}`);
   }
 }

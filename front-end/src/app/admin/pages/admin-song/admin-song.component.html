@@ -56,22 +56,30 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
-        <tr>
-          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
-          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
-          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
-          <td class="px-6 py-4 text-center text-white whitespace-nowrap"></td>
+        <tr *ngFor="let song of songs; let i = index">
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-            11/05/1992
+            {{ song.name }}
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-            666
+            {{ song.artist }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ song.album }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ song.duration | formatDuration }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ song.releaseDate | date : "dd/MM/yyyy" }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ song.likes }}
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
             <span class="flex justify-center gap-3">
               <button
                 class="flex items-center justify-center w-8 h-8 hover:bg-cyan-700 rounded-full"
-                routerLink="update/1"
+                (click)="goToUpdateSong(song)"
               >
                 <img
                   src="assets/icons/hero-edit.svg"
@@ -82,6 +90,7 @@
               </button>
               <button
                 class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-red-700"
+                (click)="deleteSong(song)"
               >
                 <img
                   src="assets/icons/hero-trash.svg"

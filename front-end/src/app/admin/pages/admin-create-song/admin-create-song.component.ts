@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SongService } from '../../services/songs/song.service';
 import { Song } from 'src/types/Song';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-create-song',
@@ -13,7 +14,11 @@ export class AdminCreateSongComponent {
   songForm: FormGroup;
 
   // Inject the FormBuilder
-  constructor(private fb: FormBuilder, private songService: SongService) {
+  constructor(
+    private fb: FormBuilder,
+    private songService: SongService,
+    private location: Location
+  ) {
     // Create the form
     this.songForm = this.fb.group({
       name: ['', Validators.required],
@@ -32,5 +37,7 @@ export class AdminCreateSongComponent {
     }
 
     this.songService.createSong(this.songForm.value as Song);
+
+    this.location.back();
   }
 }

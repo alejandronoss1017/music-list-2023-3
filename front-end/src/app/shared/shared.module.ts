@@ -34,6 +34,7 @@ import { FormatDurationPipe } from './pipes/format-duration.pipe';
     SearchBoxComponent,
     ButtonComponent,
     BannerComponent,
+    FormatDurationPipe,
   ],
 })
 export class SharedModule {}

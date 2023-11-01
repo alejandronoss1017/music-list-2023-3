@@ -58,7 +58,13 @@
       </label>
       <button
         type="submit"
-        class="bg-russian-violet w-3/6 rounded-xl p-4 font-poppins text-white text-xl font-semibold shadow-xl transition duration-500 ease-in-out hover:bg-blue-900 hover:shadow-none active:bg-blue-900 active:shadow-none"
+        [disabled]="songForm.invalid"
+        class=""
+        [className]="
+          songForm.invalid
+            ? 'bg-gray-500 w-3/6 rounded-xl p-4 font-poppins text-white text-xl font-semibold shadow-xl transition'
+            : 'bg-russian-violet w-3/6 rounded-xl p-4 font-poppins text-white text-xl font-semibold shadow-xl transition duration-500 ease-in-out hover:bg-blue-900 hover:shadow-none active:bg-blue-900 active:shadow-none'
+        "
       >
         Create
       </button>

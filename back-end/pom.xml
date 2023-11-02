@@ -14,7 +14,14 @@
 	<name>musiclist</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
+
+		<!-- Java version -->
 		<java.version>17</java.version>
+
+		<!-- SonarQube properties -->
+		<sonar.host.url>http://app.inphoptech.co</sonar.host.url>
+		<sonar.login>sqp_b0c60f976e667f908483299fda83040368b2ff05</sonar.login>
+
 	</properties>
 	<dependencies>
 		<dependency>
@@ -51,6 +58,12 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.7.0.1746</version>
 			</plugin>
 		</plugins>
 	</build>

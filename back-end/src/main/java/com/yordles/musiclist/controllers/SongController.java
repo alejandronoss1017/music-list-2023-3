@@ -1,5 +1,6 @@
 package com.yordles.musiclist.controllers;
 
+import com.yordles.musiclist.dtos.SongDTO;
 import com.yordles.musiclist.models.PlayList;
 import com.yordles.musiclist.models.PlayListHasSong;
 import com.yordles.musiclist.models.Song;
@@ -78,17 +79,19 @@ public class SongController {
      *               <p>
      */
     @PostMapping(path = "/add")
-    public ResponseEntity<Song> addNewSong(@RequestBody Song song) throws Exception {
+    public ResponseEntity<Song> addNewSong(@RequestBody SongDTO song) throws Exception {
 
-        if (song.getPlayListHasSongs() != null) {
+        
 
-            for (PlayListHasSong playListHasSong : song.getPlayListHasSongs()) {
-                playListHasSong.setSong(song);
-                Long playListId = playListHasSong.getPlayList().getId();
-                PlayList playList = playListService.findPlayListById(playListId);
-                playListHasSong.setPlayList(playList);
-            }
-        }
+        // if (song.getPlayListHasSongs() != null) {
+
+        //     for (PlayListHasSong playListHasSong : song.getPlayListHasSongs()) {
+        //         playListHasSong.setSong(song);
+        //         Long playListId = playListHasSong.getPlayList().getId();
+        //         PlayList playList = playListService.findPlayListById(playListId);
+        //         playListHasSong.setPlayList(playList);
+        //     }
+        // }
 
         Song songToSave = songService.saveSong(song);
 
@@ -100,7 +103,7 @@ public class SongController {
     }
 
     @PostMapping(path = "/addMany")
-    public ResponseEntity<Iterable<Song>> addNewSongs(@RequestBody Iterable<Song> songs) throws Exception {
+    public ResponseEntity<Iterable<Song>> addNewSongs(@RequestBody Iterable<SongDTO> songs) throws Exception {
         Iterable<Song> savedSongs = songService.saveManySongs(songs);
 
         if (savedSongs == null) {

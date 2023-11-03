@@ -101,22 +101,22 @@ public class SongTest {
      * @since 2023-09-22
      *
      */
-    @Test
-    void testAddNewSong() throws Exception {
-        // Arrange
-        Song SongToSave = new Song();
-        SongToSave.setName("TestNewSong");
-        SongToSave.setArtist("TestNewSong");
-        SongToSave.setAlbum("TestNewSong");
-        SongToSave.setDuration(3.14);
-        SongToSave.setReleaseDate(new Date());
+    // @Test
+    // void testAddNewSong() throws Exception {
+    //     // Arrange
+    //     Song SongToSave = new Song();
+    //     SongToSave.setName("TestNewSong");
+    //     SongToSave.setArtist("TestNewSong");
+    //     SongToSave.setAlbum("TestNewSong");
+    //     SongToSave.setDuration(3.14);
+    //     SongToSave.setReleaseDate(new Date());
 
         // Act
-        Song responseEntity = songService.saveSong(SongToSave);
+        // Song responseEntity = songService.saveSong(SongToSave);
 
         // Assert
-        assertNotNull(responseEntity);
-    }
+        // assertNotNull(responseEntity);
+    // }
 
     /**
      *

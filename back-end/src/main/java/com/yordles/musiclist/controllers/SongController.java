@@ -1,10 +1,7 @@
 package com.yordles.musiclist.controllers;
 
 import com.yordles.musiclist.dtos.SongDTO;
-import com.yordles.musiclist.models.PlayList;
-import com.yordles.musiclist.models.PlayListHasSong;
 import com.yordles.musiclist.models.Song;
-import com.yordles.musiclist.services.PlayListService;
 import com.yordles.musiclist.services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,9 +36,6 @@ public class SongController {
 
     @Autowired
     private SongService songService;
-
-    @Autowired
-    private PlayListService playListService;
 
     /**
      * This method is used to get all the songs from the database, it is called
@@ -81,16 +75,14 @@ public class SongController {
     @PostMapping(path = "/add")
     public ResponseEntity<Song> addNewSong(@RequestBody SongDTO song) throws Exception {
 
-        
-
         // if (song.getPlayListHasSongs() != null) {
 
-        //     for (PlayListHasSong playListHasSong : song.getPlayListHasSongs()) {
-        //         playListHasSong.setSong(song);
-        //         Long playListId = playListHasSong.getPlayList().getId();
-        //         PlayList playList = playListService.findPlayListById(playListId);
-        //         playListHasSong.setPlayList(playList);
-        //     }
+        // for (PlayListHasSong playListHasSong : song.getPlayListHasSongs()) {
+        // playListHasSong.setSong(song);
+        // Long playListId = playListHasSong.getPlayList().getId();
+        // PlayList playList = playListService.findPlayListById(playListId);
+        // playListHasSong.setPlayList(playList);
+        // }
         // }
 
         Song songToSave = songService.saveSong(song);

@@ -1,18 +1,16 @@
 package com.yordles.musiclist.services;
 
-import java.util.List;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yordles.musiclist.dtos.SongDTO;
+import com.yordles.musiclist.dtos.interfaces.SongMapper;
 import com.yordles.musiclist.models.Song;
 import com.yordles.musiclist.services.repositories.SongRepository;
 
-import org.modelmapper.TypeToken;
-import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class SongService {
@@ -22,9 +20,6 @@ public class SongService {
 
     @Autowired
     private GenreService genreService;
-
-    @Autowired
-    private ModelMapper modelMapper;
 
     @Transactional
     public Iterable<Song> findAllSongs() {
@@ -39,9 +34,9 @@ public class SongService {
     @Transactional
     public Song saveSong(SongDTO songRequest) {
 
-        Song songToSave = modelMapper.map(songRequest, Song.class);
+        Song songToSave = SongMapper.INSTANCE.songDTOToSong(songRequest);
 
-        songToSave.setGenre(genreService.findGenreById(songRequest.getGenreId()));
+        songToSave.setGenre(genreService.findGenreById(songToSave.getGenre().getId()));
 
         return songRepository.save(songToSave);
     }
@@ -78,11 +73,20 @@ public class SongService {
     }
 
     private List<Song> mapIterable(Iterable<SongDTO> songsToMap) {
-        Type listType = new TypeToken<List<Song>>() {
-        }.getType();
-        List<Song> destinationList = modelMapper.map(songsToMap, listType);
 
+        List<Song> destinationList = new ArrayList<>();
+
+        for (SongDTO songDTO : songsToMap) {
+
+            Song song = SongMapper.INSTANCE.songDTOToSong(songDTO);
+
+            song.setGenre(genreService.findGenreById(song.getGenre().getId()));
+
+            destinationList.add(song);
+
+        }
         return destinationList;
+
     }
 
 }

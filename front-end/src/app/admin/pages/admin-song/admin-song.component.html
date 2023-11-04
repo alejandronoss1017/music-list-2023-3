@@ -36,6 +36,11 @@
           <th
             class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
           >
+            Genre
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
             Duration
           </th>
           <th
@@ -65,6 +70,9 @@
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
             {{ song.album }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ song.genre.name }}
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
             {{ song.duration | formatDuration }}

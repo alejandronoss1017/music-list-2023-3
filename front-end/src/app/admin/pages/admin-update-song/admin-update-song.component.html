@@ -56,6 +56,14 @@
           formControlName="releaseDate"
         />
       </label>
+      <label for="" class="flex items-center justify-center gap-4 w-3/6">
+        <h3 class="w-3/6">Genre:</h3>
+        <select class="rounded-sm h-8 w-3/6" formControlName="genreId">
+          <option *ngFor="let genre of genres" [value]="genre.id">
+            {{ genre.name }}
+          </option>
+        </select>
+      </label>
       <span class="flex gap-4 w-full justify-center">
         <button
           type="button"

@@ -21,7 +21,6 @@ export class AdminSongComponent implements OnInit {
     this.songServicePublic.getSongs().subscribe((songs) => {
       this.songs = songs as Song[];
     });
-    throw new Error('Method not implemented.');
   }
 
   toggleHeartColor(song: Song) {

@@ -123,6 +123,20 @@ public class GenreController {
         return new ResponseEntity<>(genre, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/name/{name}")
+    public ResponseEntity<Genre> getGenreByName(@PathVariable String name) throws Exception {
+        log.info("GET request to /genre/name/{}", name);
+
+        Genre genre = genreService.findGenreByName(name);
+
+        if (genre == null) {
+            log.error("Genre with name {} not found", name);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(genre, HttpStatus.OK);
+    }
+
     /**
      * This method is used to add a new genre to the database, it is called when a
      * POST request is made to /genre/add, it expects a JSON object with the name of

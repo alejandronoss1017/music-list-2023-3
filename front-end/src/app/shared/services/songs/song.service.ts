@@ -20,4 +20,12 @@ export class SongService {
     const seconds = duration % 60;
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
+
+  getSongsByGenreId(id: number) {
+    return this.http.get(`${this.apiUrl}/all/genre/${id}`);
+  }
+
+  getSongByName(name: string) {
+    return this.http.get(`${this.apiUrl}/all/search/${name}`);
+  }
 }

@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.songService.getSongs().subscribe((songs: any) => {
-      console.log(songs);
       this.musicList = songs;
     });
   }

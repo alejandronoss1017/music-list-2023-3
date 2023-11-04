@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yordles.musiclist.dtos.SongDTO;
 import com.yordles.musiclist.dtos.interfaces.SongMapper;
+import com.yordles.musiclist.models.Genre;
 import com.yordles.musiclist.models.Song;
 import com.yordles.musiclist.services.repositories.SongRepository;
 
@@ -27,8 +28,20 @@ public class SongService {
     }
 
     @Transactional
+    public Iterable<Song> findAllSongsByGenreId(Long genreId) {
+        Genre genre = genreService.findGenreById(genreId);
+
+        return songRepository.findByGenre(genre);
+    }
+
+    @Transactional
     public Song findSongById(Long id) {
         return songRepository.findById(id).orElse(null);
+    }
+
+    @Transactional
+    public Iterable<Song> findAllSongsByPartialName(String partialName) {
+        return songRepository.findByNameContainingIgnoreCase(partialName);
     }
 
     @Transactional

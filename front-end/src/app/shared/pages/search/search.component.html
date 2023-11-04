@@ -7,80 +7,89 @@
 >
 </shared-search-box>
 
-<div class="overflow-x-auto w-full">
-  <table class="min-w-full divide-y divide-gray-200">
-    <thead class="bg-[#2e3b53]">
-      <tr>
-        <th
-          class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-        >
-          Name
-        </th>
-        <th
-          class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-        >
-          Artist
-        </th>
-        <th
-          class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-        >
-          Album
-        </th>
-        <th
-          class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-        >
-          Duration
-        </th>
-        <th
-          class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-        >
-          Release date
-        </th>
-        <th
-          class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-        >
-          Likes
-        </th>
-        <th
-          class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-        >
-          <img
-            src="assets/icons/hero-heart-solid.svg"
-            alt="Heart icon"
-            width="24px"
-            height="24px"
-          />
-        </th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-gray-200">
-      <tr  *ngFor="let musicItem of filteredMusicList; let i = index" >
-        <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-          {{ musicItem.name }}
-        </td>
-        <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-          {{ musicItem.artist }}
-        </td>
-        <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-          {{ musicItem.album }}
-        </td>
-        <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-          {{ musicItem.duration }}
-        </td>
-        <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-          11/05/1992
-        </td>
-        <td class="px-6 py-4 text-center text-white whitespace-nowrap">666</td>
-        <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-          <img
-            src="assets/icons/hero-heart-solid.svg"
-            alt="Heart Icon"
-            width="24px"
-            height="24px"
-            class="cursor-pointer"
-          />
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<section class="flex flex-col items-start self-stretch">
+ <div class="overflow-x-auto w-full">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-[#2e3b53]">
+        <tr>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Name
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Artist
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Album
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Duration
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Release date
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            Likes
+          </th>
+          <th
+            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
+          >
+            <img
+              src="assets/icons/hero-heart-solid.svg"
+              alt="Heart icon"
+              width="24px"
+              height="24px"
+            />
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let musicItem of musicList; let i = index">
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ musicItem.name }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ musicItem.artist }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ musicItem.album }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ musicItem.duration | formatDuration }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ musicItem.releaseDate | date : "dd/MM/yyyy" }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            {{ musicItem.likes }}
+          </td>
+          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
+            <img
+              [src]="
+                musicItem.favorite
+                  ? 'assets/icons/hero-heart-solid.svg'
+                  : 'assets/icons/hero-heart.svg'
+              "
+              alt="Heart Icon"
+              width="24px"
+              height="24px"
+              (click)="toggleHeartColor(musicItem)"
+              class="cursor-pointer"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

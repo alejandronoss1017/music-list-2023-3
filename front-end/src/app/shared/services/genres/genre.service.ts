@@ -13,4 +13,8 @@ export class GenreService {
   getGenres() {
     return this.http.get(`${this.apiUrl}/${'all'}`);
   }
+
+  getGenreIdByName(name: string) {
+    return this.http.get(`${this.apiUrl}/name/${name}`);
+  }
 }

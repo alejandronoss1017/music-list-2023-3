@@ -1,41 +1,72 @@
-<body>
+<div class="flex flex-col h-screen bg-[#1a347d] gap-4">
   <!-- Top Navbar with MusicList.svg -->
-  <nav class="flex justify-between items-center p-3 bg-yellow-700">
-    <img src="assets/images/MusicList.svg" alt="" class="custom-svg-size" />
+  <nav class="flex justify-between items-center p-3">
+    <img
+      src="assets/images/MusicList-white.svg"
+      alt=""
+      class="custom-svg-size"
+    />
   </nav>
 
   <!-- Registration Form Section -->
-  <section class="flex flex-col justify-center items-center p-11">
-    <h1 class="font-bold text-dark-purple text-3xl mb-4">Register</h1>
+  <section class="flex justify-center items-center h-full">
+    <div
+      class="flex flex-col justify-evenly items-center bg-[#2146ad] w-2/4 h-5/6 rounded-xl"
+    >
+      <h1 class="font-bold text-white text-3xl mb-4">Register</h1>
+      <!-- Registration Form -->
+      <form
+        class="flex flex-col w-full max-w-sm gap-4"
+        method="post"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <label for="" class="text-white font-semibold">
+          Username
+          <input
+            type="text"
+            class="w-full rounded-xl border-2 border-[#D1D1D1] p-4 mb-4 text-black"
+            placeholder="Username"
+            formControlName="username"
+          />
+        </label>
+        <label for="" class="text-white font-semibold">
+          Email address
+          <input
+            type="email"
+            class="w-full rounded-xl border-2 border-[#D1D1D1] p-4 mb-4 text-black"
+            placeholder="Email address"
+            formControlName="email"
+          />
+        </label>
 
-    <!-- Registration Form -->
-    <form class="w-full max-w-sm">
-      <input
-        type="text"
-        class="w-full rounded-xl border-2 border-D1D1D1 p-4 mb-4"
-        placeholder="Username"
-      />
-      <input
-        type="email"
-        class="w-full rounded-xl border-2 border-D1D1D1 p-4 mb-4"
-        placeholder="Email address"
-      />
-      <input
-        type="password"
-        class="w-full rounded-xl border-2 border-D1D1D1 p-4 mb-4"
-        placeholder="Password"
-      />
+        <label for="" class="text-white font-semibold">
+          Password
+          <input
+            type="password"
+            class="w-full rounded-xl border-2 border-D1D1D1 p-4 mb-4 text-black"
+            placeholder="Password"
+            formControlName="password"
+          />
+        </label>
 
-      <app-button
-        class="w-full"
-        text="Register"
-        routerLink="/main"
-      ></app-button>
-    </form>
+        <button
+          type="submit"
+          class="bg-russian-violet w-full rounded-xl p-4 font-poppins text-white text-xl font-semibold shadow-xl transition duration-500 ease-in-out hover:bg-blue-900 hover:shadow-none active:bg-blue-900 active:shadow-none hover:scale-105"
+        >
+          Create
+        </button>
+      </form>
 
-    <p class="text-dark-purple mt-4">
-      Already have an account?
-      <span class="text-goldenrod font-bold" [routerLink]="'/authentication'"style="cursor: pointer">Login</span>
-    </p>
+      <p class="text-white mt-4">
+        Already have an account?
+        <span
+          class="text-goldenrod font-bold"
+          [routerLink]="'/authentication'"
+          style="cursor: pointer"
+          >Login</span
+        >
+      </p>
+    </div>
   </section>
-</body>
+</div>

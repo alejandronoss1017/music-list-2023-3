@@ -12,6 +12,7 @@ import { GenrePageComponent } from './pages/genre-page/genre-page.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { FormatDurationPipe } from './pipes/format-duration.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { FormatDurationPipe } from './pipes/format-duration.pipe';
     BannerComponent,
     FormatDurationPipe,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
     HomeComponent,
     SidebarComponent,

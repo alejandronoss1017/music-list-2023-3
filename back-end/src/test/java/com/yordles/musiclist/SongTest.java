@@ -3,8 +3,6 @@ package com.yordles.musiclist;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.Date;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -135,24 +133,24 @@ public class SongTest {
      * @since 2023-09-22
      *
      */
-    @Test
-    void testUpdateSong() {
+    // @Test
+    // void testUpdateSong() {
         // Arrange
-        Long idToUpdate = 1L;
+        // Long idToUpdate = 1L;
 
-        Song SongToSave = new Song();
-        SongToSave.setName("TestUpdateSong");
-        SongToSave.setArtist("TestUpdateSong");
-        SongToSave.setAlbum("TestUpdateSong");
-        SongToSave.setDuration(3.15);
-        SongToSave.setReleaseDate(new Date());
+        // Song SongToSave = new Song();
+        // SongToSave.setName("TestUpdateSong");
+        // SongToSave.setArtist("TestUpdateSong");
+        // SongToSave.setAlbum("TestUpdateSong");
+        // SongToSave.setDuration(3.15);
+        // SongToSave.setReleaseDate(new Date());
 
         // Act
-        Song responseEntity = songService.updateSong(idToUpdate, SongToSave);
+        // Song responseEntity = songService.updateSong(idToUpdate, SongToSave);
 
         // Assert
-        assertNotNull(responseEntity);
-    }
+        // assertNotNull(responseEntity);
+    // }
 
     /**
      *

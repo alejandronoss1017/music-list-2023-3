@@ -50,14 +50,17 @@ public class SongService {
     }
 
     @Transactional
-    public Song updateSong(Long id, Song songRequest) {
-        Song songToUpdate = findSongById(id);
+    public Song updateSong(Long id, SongDTO songRequest) {
+
+        Song songToUpdate = SongMapper.INSTANCE.songDTOToSong(songRequest);
+
+        songToUpdate = findSongById(id);
         songToUpdate.setAlbum(songRequest.getAlbum());
         songToUpdate.setArtist(songRequest.getArtist());
         songToUpdate.setDuration(songRequest.getDuration());
-        songToUpdate.setLikes(songRequest.getLikes());
         songToUpdate.setName(songRequest.getName());
         songToUpdate.setReleaseDate(songRequest.getReleaseDate());
+        songToUpdate.setGenre(genreService.findGenreById(songRequest.getGenreId()));
 
         return songRepository.save(songToUpdate);
     }

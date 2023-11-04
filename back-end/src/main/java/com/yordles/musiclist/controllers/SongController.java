@@ -119,12 +119,14 @@ public class SongController {
      *              <p>
      */
     @PutMapping(path = "/update/{id}")
-    public ResponseEntity<String> updateSongById(@PathVariable Long id, @RequestBody Song song) throws Exception {
+    public ResponseEntity<String> updateSongById(@PathVariable Long id, @RequestBody SongDTO song) throws Exception {
 
         Song songToUpdate = songService.updateSong(id, song);
 
+        System.out.println("Song to update: " + song.toString());
+
         if (songToUpdate == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(HttpStatus.OK);

@@ -60,6 +60,29 @@ public class SongController {
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/all/genre/{id}")
+    public ResponseEntity<Iterable<Song>> getAllSongsByGenreId(@PathVariable Long id) throws Exception {
+
+        Iterable<Song> songs = songService.findAllSongsByGenreId(id);
+
+        if (songs == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(songs, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/all/search/{partialName}")
+    public ResponseEntity<Iterable<Song>> searchSongsByPartialName(@PathVariable String partialName) throws Exception {
+        Iterable<Song> songs = songService.findAllSongsByPartialName(partialName);
+
+        if (songs == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(songs, HttpStatus.OK);
+    }
+
     /**
      * This method is used to add a new song to the database, it is called when a
      * POST request is made to /song/add, it returns a JSON object with the new song

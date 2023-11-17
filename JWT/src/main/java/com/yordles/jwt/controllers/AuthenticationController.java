@@ -8,11 +8,13 @@ import com.yordles.jwt.services.AuthenticationService;
 import com.yordles.jwt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(value = "*")
 public class AuthenticationController {
 
     @Autowired
@@ -23,8 +25,7 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(
-            @RequestBody AuthenticationRequest authenticationRequest
-    ) {
+            @RequestBody AuthenticationRequest authenticationRequest) {
         AuthenticationResponse jwtDto = authenticationService.login(authenticationRequest);
         return ResponseEntity.ok().body(jwtDto);
     }

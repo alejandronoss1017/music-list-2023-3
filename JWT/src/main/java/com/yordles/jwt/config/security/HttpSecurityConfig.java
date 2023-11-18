@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @Component
 @EnableWebSecurity
@@ -22,22 +23,23 @@ public class HttpSecurityConfig {
     @Autowired
     private JWTAuthenticationFilter authenticationFilter;
 
+    @Autowired
+    private CorsConfigurationSource corsConfigurationSource;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
-                .sessionManagement(
-                        sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .authorizeHttpRequests(authConfig ->
-                        {
-                            authConfig.requestMatchers(HttpMethod.POST, "/login").permitAll();
-                            authConfig.requestMatchers(HttpMethod.POST, "/register").permitAll();
-                            authConfig.requestMatchers("/error").permitAll();
-                            authConfig.anyRequest().denyAll();
-                        }
-                );
+            .sessionManagement(sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authenticationProvider(authenticationProvider)
+            .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
+            .authorizeHttpRequests(authConfig -> {
+                authConfig.requestMatchers(HttpMethod.POST, "/login").permitAll();
+                authConfig.requestMatchers(HttpMethod.POST, "/register").permitAll();
+                authConfig.requestMatchers("/error").permitAll();
+                authConfig.anyRequest().denyAll()
+                ;
+            })
+            .cors().configurationSource(corsConfigurationSource);
         return http.build();
     }
 

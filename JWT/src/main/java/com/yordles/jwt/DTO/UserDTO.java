@@ -3,6 +3,7 @@ package com.yordles.jwt.DTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @class: UserDTO
@@ -15,6 +16,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserDTO {
     // username for the user
     private String username;

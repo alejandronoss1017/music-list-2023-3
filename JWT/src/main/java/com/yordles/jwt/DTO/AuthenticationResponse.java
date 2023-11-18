@@ -3,6 +3,7 @@ package com.yordles.jwt.DTO;
 import lombok.AllArgsConstructor;
 import lombok.Generated;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -17,6 +18,7 @@ import lombok.Setter;
 @Setter
 @Generated
 @AllArgsConstructor
+@NoArgsConstructor
 public class AuthenticationResponse {
     // @Generated for Lombok to generate a constructor with all the arguments
     @Generated

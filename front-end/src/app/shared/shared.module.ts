@@ -36,6 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ButtonComponent,
     BannerComponent,
     FormatDurationPipe,
+    ReactiveFormsModule,
   ],
 })
 export class SharedModule {}

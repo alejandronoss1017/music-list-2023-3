@@ -8,6 +8,7 @@ import com.yordles.jwt.services.AuthenticationService;
 import com.yordles.jwt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,16 +32,39 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserDTO userDTO) {
-        if (userDTO.getUsername() == null || userDTO.getPassword() == null || userDTO.getEmail() == null) {
+        if (userDTO.getUsername() == null || userDTO.getPassword() == null || userDTO.getEmail() == null)
             return ResponseEntity.badRequest().body("Username, password and email are required");
-        }
 
         User userToSave = userService.saveUser(
-                new User(userDTO.getUsername(), userDTO.getPassword(), userDTO.getEmail()));
+                new User(userDTO.getUsername(), userDTO.getEmail(), userDTO.getPassword()));
 
         if (userToSave == null)
             return ResponseEntity.badRequest().body("Username or email already exists");
 
         return ResponseEntity.ok().body("User registered successfully");
+    }
+
+    @PostMapping("/registerAdmin")
+    public ResponseEntity<String> registerAdmin(@RequestBody UserDTO userDTO) {
+        if (userDTO.getUsername() == null || userDTO.getPassword() == null || userDTO.getEmail() == null)
+            return ResponseEntity.badRequest().body("Username, password and email are required");
+
+        User userToSave = userService.saveUser(User.createAdmin(userDTO.getUsername(),
+                userDTO.getEmail(), userDTO.getPassword()));
+
+        if (userToSave == null)
+            return ResponseEntity.badRequest().body("Username or email already exists");
+
+        return ResponseEntity.ok().body("User registered successfully");
+    }
+
+    @GetMapping("/verifyRoleUser")
+    public ResponseEntity<String> verifyRoleUser() {
+        return ResponseEntity.ok().body("You have the user role");
+    }
+
+    @GetMapping("/verifyRoleAdmin")
+    public ResponseEntity<String> verifyRoleAdmin() {
+        return ResponseEntity.ok().body("You have the admin role");
     }
 }

@@ -48,7 +48,7 @@ public class AuthenticationService {
     private Map<String, Object> generateExtraClaims(User user) {
         return Map.of(
                 "username", user.getUsername(),
-                "admin", user.getAdmin()
+                "admin", user.getAdmin() == 1 ? "yes" : "no"
         );
     }
 }

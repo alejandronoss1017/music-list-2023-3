@@ -38,7 +38,12 @@ public class HttpSecurityConfig {
                         {
                             authConfig.requestMatchers(HttpMethod.POST, "/login").permitAll();
                             authConfig.requestMatchers(HttpMethod.POST, "/register").permitAll();
+                            authConfig.requestMatchers(HttpMethod.POST, "/registerAdmin").permitAll();
                             authConfig.requestMatchers("/error").permitAll();
+
+                            authConfig.requestMatchers(HttpMethod.GET, "/verifyRoleUser").hasAuthority("ROLE_USER");
+                            authConfig.requestMatchers(HttpMethod.GET, "/verifyRoleAdmin").hasAuthority("ROLE_ADMIN");
+
                             authConfig.anyRequest().denyAll();
                         }
                 );

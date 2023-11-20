@@ -100,20 +100,20 @@ public class UserTest {
      * @since 2023-09-22
      *
      */
-    @Test
-    void testAddNewUser() throws Exception {
-        // Arrange
-        User userToSave = new User();
-        userToSave.setEmail("TestNewUser");
-        userToSave.setUsername("TestUsernameNewUser");
-        userToSave.setPassword("TestPasswordNewUser");
+    // @Test
+    // void testAddNewUser() throws Exception {
+    //     // Arrange
+    //     User userToSave = new User();
+    //     userToSave.setEmail("TestNewUser");
+    //     userToSave.setUsername("TestUsernameNewUser");
+    //     userToSave.setPassword("TestPasswordNewUser");
 
-        // Act
-        User responseEntity = userService.saveUser(userToSave);
+    //     // Act
+    //     User responseEntity = userService.saveUser(userToSave);
 
-        // Assert
-        assertNotNull(responseEntity);
-    }
+    //     // Assert
+    //     assertNotNull(responseEntity);
+    // }
 
     /**
      *

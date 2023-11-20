@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.yordles.musiclist.dtos.CreateUserDTO;
+import com.yordles.musiclist.dtos.UserDTO;
 import com.yordles.musiclist.models.User;
 import com.yordles.musiclist.services.UserService;
 
@@ -22,8 +23,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    
-     /**
+
+    /**
      * This method is used to get all the users from the database, it is called
      * when a GET request is made to /user/all, it returns a JSON object with all
      * the users.
@@ -52,7 +53,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-     /**
+    /**
      * This method is used to get a user by its id, it is called when a GET request
      * is made to /user/{id}, it returns a JSON object with the user.
      * 
@@ -77,6 +78,18 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/username/{username}")
+    public ResponseEntity<UserDTO> getUserByUsername(@PathVariable String username) throws Exception {
+
+        UserDTO user = userService.findUserByUsername(username);
+
+        if (user == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
     /**
      * This method is used to add a new user to the database, it is called when a
      * POST request is made to /user/add, it expects a JSON object with the name of
@@ -89,9 +102,9 @@ public class UserController {
      *                   exception is thrown
      */
     @PostMapping(path = "/add")
-    public ResponseEntity<User> addNewUser(@RequestBody User user) throws Exception {
+    public ResponseEntity<UserDTO> addNewUser(@RequestBody CreateUserDTO user) throws Exception {
 
-        User userToSave = userService.saveUser(user);
+        UserDTO userToSave = userService.saveUser(user);
 
         if (userToSave == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -105,7 +118,7 @@ public class UserController {
      * PUT request is made to /user/update/{id}, it expects a JSON object with the
      * user to be updated.
      * 
-     * @param id    The id of the user to be updated
+     * @param id   The id of the user to be updated
      * 
      * @param user The user to be updated
      * 
@@ -126,7 +139,6 @@ public class UserController {
         return new ResponseEntity<>(userToUpdate, HttpStatus.OK);
     }
 
-
     /**
      * This method is used to delete a user from the database, it is called when a
      * DELETE request is made to /user/delete/{id}.
@@ -143,14 +155,14 @@ public class UserController {
      *                   this exception is thrown
      */
     @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity<User> deleteuser(@PathVariable Long id) throws Exception {
+    public ResponseEntity<User> deleteUser(@PathVariable Long id) throws Exception {
 
         User user = userService.findUserById(id);
 
         if (user == null) {
             return new ResponseEntity<>(user, null, HttpStatus.NOT_FOUND);
         }
-    
+
         // Delete the user
         userService.deleteUserById(id);
 

@@ -41,4 +41,8 @@ export class UserService {
   favoriteSongs(username: string): Observable<Song[]> {
     return this.http.get<Song[]>(`${this.apiUrl}/get/${username}`);
   }
+
+  registerUser(user: any) {
+    return this.http.post(`${this.apiUrl}/add`, user);
+  }
 }

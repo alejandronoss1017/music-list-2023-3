@@ -58,9 +58,15 @@ export class AuthService {
     }
   }
 
-  register(registerRequest: RegisterRequest) {
-    return this.http
+  async register(registerRequest: RegisterRequest) {
+    try{
+       await this.http
       .post(`${this.apiUrl}` + 'register', registerRequest)
-      .subscribe();
-  }
+      .toPromise();
+      return true;
+    }catch(error){
+      console.error('Error registering user', error);
+      return false;
+      }
+    }
 }

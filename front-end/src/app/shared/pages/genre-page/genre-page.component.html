@@ -1,5 +1,5 @@
 <!-- Banner -->
-<app-banner/>
+<app-banner />
 
 <!-- Section content of the view -->
 <section class="flex flex-col items-start self-stretch">
@@ -42,16 +42,6 @@
           >
             Likes
           </th>
-          <th
-            class="px-6 py-3 text-center font-medium text-white uppercase tracking-wider"
-          >
-            <img
-              src="assets/icons/hero-heart-solid.svg"
-              alt="Heart icon"
-              width="24px"
-              height="24px"
-            />
-          </th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
@@ -73,20 +63,6 @@
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
             {{ musicItem.likes }}
-          </td>
-          <td class="px-6 py-4 text-center text-white whitespace-nowrap">
-            <img
-              [src]="
-                musicItem.favorite
-                  ? 'assets/icons/hero-heart-solid.svg'
-                  : 'assets/icons/hero-heart.svg'
-              "
-              alt="Heart Icon"
-              width="24px"
-              height="24px"
-              (click)="toggleHeartColor(musicItem)"
-              class="cursor-pointer"
-            />
           </td>
         </tr>
       </tbody>

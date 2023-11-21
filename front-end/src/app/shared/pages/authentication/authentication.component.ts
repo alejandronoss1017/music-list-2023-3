@@ -28,6 +28,8 @@ export class AuthenticationComponent implements OnInit {
   }
 
   async onSubmit() {
+    Cookies.set('username', this.authForm.value.username);
+
     await this.authService.login(this.authForm.value as LoginRequest);
 
     if (Cookies.get('role') == 'Admin' || Cookies.get('role') == 'User') {

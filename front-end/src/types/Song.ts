@@ -1,7 +1,7 @@
 import { Genre } from './Genre';
 
 export type Song = {
-  id?: number;
+  id: number;
   name: string;
   artist: string;
   duration: number | string;

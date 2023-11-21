@@ -50,7 +50,7 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
-        <tr *ngFor="let musicItem of musicList; let i = index">
+        <tr *ngFor="let musicItem of favoriteSongs; let i = index">
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
             {{ musicItem.name }}
           </td>
@@ -68,16 +68,10 @@
           </td>
           <td class="px-6 py-4 text-center text-white whitespace-nowrap">
             <img
-              [src]="
-                musicItem.favorite
-                  ? 'assets/icons/hero-heart-solid.svg'
-                  : 'assets/icons/hero-heart.svg'
-              "
+              src="assets/icons/hero-heart-solid.svg"
               alt="Heart Icon"
               width="24px"
               height="24px"
-              (click)="toggleHeartColor(musicItem)"
-              class="cursor-pointer"
             />
           </td>
         </tr>

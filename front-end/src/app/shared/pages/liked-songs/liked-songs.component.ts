@@ -1,6 +1,8 @@
+import { UserService } from './../../services/users/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Song } from 'src/types/Song';
 import { SongService } from '../../services/songs/song.service';
+import Cookies from 'js-cookie';
 
 @Component({
   selector: 'app-liked-songs',
@@ -8,14 +10,17 @@ import { SongService } from '../../services/songs/song.service';
   styleUrls: ['./liked-songs.component.css'],
 })
 export class LikedSongsComponent implements OnInit {
-  musicList: Song[] = [];
+  favoriteSongs: Song[] = [];
 
-  constructor(private songService: SongService) {}
+  constructor(
+    private songService: SongService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    this.songService.getSongs().subscribe((songs: any) => {
+    this.userService.favoriteSongs(Cookies.get('username') as string).subscribe((songs) => {
       console.log(songs);
-      this.musicList = songs;
+      this.favoriteSongs = songs;
     });
   }
 

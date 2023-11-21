@@ -6,13 +6,24 @@ import { environment } from 'src/environment/environment';
   providedIn: 'root',
 })
 export class SongService {
-
   private apiUrl = environment.backendUrl + 'song';
 
   constructor(private http: HttpClient) {}
 
   getSongs() {
     return this.http.get(`${this.apiUrl}/${'all'}`);
+  }
+
+  async addLike(songId: number) {
+    return await this.http
+      .post(`${this.apiUrl}/${'addLike'}/${songId}`, {})
+      .toPromise();
+  }
+
+  async removeLike(songId: number) {
+    return await this.http
+      .post(`${this.apiUrl}/${'removeLike'}/${songId}`, {})
+      .toPromise();
   }
 
   formatDuration(duration: number): string {

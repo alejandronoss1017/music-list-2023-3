@@ -12,6 +12,7 @@ import { AdminUpdateGenreComponent } from './pages/admin-update-genre/admin-upda
 import { AdminCreateGenreComponent } from './pages/admin-create-genre/admin-create-genre.component';
 import { AdminCreateSongComponent } from './pages/admin-create-song/admin-create-song.component';
 import { FormatDurationPipe } from '../shared/pipes/format-duration.pipe';
+import { AuthService } from '../shared/services/auth/auth.service';
 
 @NgModule({
   declarations: [

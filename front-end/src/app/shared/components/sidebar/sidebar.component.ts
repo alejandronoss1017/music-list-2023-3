@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth/auth.service';
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,9 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   isCurrentRoute(route: string): boolean {
     return this.router.url === route;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

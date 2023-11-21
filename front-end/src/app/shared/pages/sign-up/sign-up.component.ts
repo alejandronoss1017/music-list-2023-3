@@ -42,7 +42,6 @@ export class SignUpComponent implements OnInit {
     // Crear el usuario en la base de datos del backend musiclist
     this.userService.registerUser(this.registerForm.value);
 
-
     if (response) {
       const loginRequest = {
         username: this.registerForm.value.username,
@@ -50,6 +49,8 @@ export class SignUpComponent implements OnInit {
       };
 
       await this.authService.login(loginRequest);
+
+      Cookies.set('username', this.registerForm.value.username);
 
       if (Cookies.get('role') == 'Admin' || Cookies.get('role') == 'User') {
       await this.authService.verifyRole(Cookies.get('role') as string);

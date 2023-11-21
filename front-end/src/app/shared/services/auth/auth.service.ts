@@ -34,6 +34,7 @@ export class AuthService {
   logout() {
     Cookies.remove('token', { path: '/' });
     Cookies.remove('role', { path: '/' });
+    Cookies.remove('username', { path: '/' });
     this.router.navigate(['/authentication']);
   }
 

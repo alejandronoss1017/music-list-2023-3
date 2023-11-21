@@ -35,17 +35,26 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<Map<String, String>> register(@RequestBody UserDTO userDTO) {
+
+        Map<String, String> reponse = new HashMap<>();
+
         if (userDTO.getUsername() == null || userDTO.getPassword() == null || userDTO.getEmail() == null)
-            return ResponseEntity.badRequest().body("Username, password and email are required");
+        {
+            reponse.put("error", "Username, password and email are required");
+            return ResponseEntity.badRequest().body(reponse);
+        }
 
         User userToSave = userService.saveUser(
                 new User(userDTO.getUsername(), userDTO.getEmail(), userDTO.getPassword()));
 
-        if (userToSave == null)
-            return ResponseEntity.badRequest().body("Username or email already exists");
+        if (userToSave == null){
+            reponse.put("error", "Username or email already exists");
+            return ResponseEntity.badRequest().body(reponse);
+        }
 
-        return ResponseEntity.ok().body("User registered successfully");
+        reponse.put("message", "User registered successfully");
+        return ResponseEntity.ok().body(reponse);
     }
 
     @PostMapping("/registerAdmin")

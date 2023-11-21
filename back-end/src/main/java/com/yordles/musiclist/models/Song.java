@@ -48,6 +48,10 @@ public class Song {
     @Column(name = "likes", nullable = false, columnDefinition = "INT DEFAULT 0")
     private Integer likes = 0;
 
+    @ManyToOne()
+    @JoinColumn(name = "genre_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_song_genre"), nullable = false)
+    private Genre genre;
+
     @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
     private Set<SongHasUserLike> songHasUserLikes;
 

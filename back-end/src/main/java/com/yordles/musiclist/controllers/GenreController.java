@@ -3,6 +3,7 @@ package com.yordles.musiclist.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -56,6 +57,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping(path = "/genre")
+@CrossOrigin(origins = "*")
 public class GenreController {
 
     @Autowired
@@ -115,6 +117,20 @@ public class GenreController {
 
         if (genre == null) {
             log.error("Genre with id {} not found", id);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(genre, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/name/{name}")
+    public ResponseEntity<Genre> getGenreByName(@PathVariable String name) throws Exception {
+        log.info("GET request to /genre/name/{}", name);
+
+        Genre genre = genreService.findGenreByName(name);
+
+        if (genre == null) {
+            log.error("Genre with name {} not found", name);
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 

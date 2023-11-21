@@ -8,6 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.yordles.musiclist.services.repositories.UserRepository;
+import com.yordles.musiclist.dtos.CreateUserDTO;
+import com.yordles.musiclist.dtos.UserDTO;
+import com.yordles.musiclist.dtos.interfaces.CreateUserMapper;
+import com.yordles.musiclist.dtos.interfaces.UserMapper;
 import com.yordles.musiclist.models.User;
 
 import jakarta.transaction.Transactional;
@@ -34,6 +38,20 @@ public class UserService {
     }
 
     @Transactional
+    public UserDTO findUserByUsername(String username) {
+
+        User user = userRepository.findByUsername(username);
+
+        return UserMapper.INSTANCE.userToUserDTO(user);
+    }
+
+    @Transactional
+    public User findUserByUsername(String username, boolean isDTO) {
+
+        return userRepository.findByUsername(username);
+    }
+
+    @Transactional
     public Set<User> findUserByIds(Set<Long> ids) {
         Set<User> userSet = new HashSet<>();
         userRepository.findAllById(ids).forEach(userSet::add);
@@ -41,9 +59,12 @@ public class UserService {
     }
 
     @Transactional
-    public User saveUser(User User) {
-        User.setPassword(encodePassword(User.getPassword()));
-        return userRepository.save(User);
+    public UserDTO saveUser(CreateUserDTO user) {
+
+        User userToSave = CreateUserMapper.INSTANCE.createUserDTOToUser(user);
+
+        user.setPassword(encodePassword(userToSave.getPassword()));
+        return UserMapper.INSTANCE.userToUserDTO(userRepository.save(userToSave));
     }
 
     @Transactional

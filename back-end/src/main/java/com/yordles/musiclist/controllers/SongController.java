@@ -1,9 +1,7 @@
 package com.yordles.musiclist.controllers;
 
-import com.yordles.musiclist.models.PlayList;
-import com.yordles.musiclist.models.PlayListHasSong;
+import com.yordles.musiclist.dtos.SongDTO;
 import com.yordles.musiclist.models.Song;
-import com.yordles.musiclist.services.PlayListService;
 import com.yordles.musiclist.services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,13 +31,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/song")
+@CrossOrigin(origins = "*")
 public class SongController {
 
     @Autowired
     private SongService songService;
-
-    @Autowired
-    private PlayListService playListService;
 
     /**
      * This method is used to get all the songs from the database, it is called
@@ -64,6 +60,29 @@ public class SongController {
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/all/genre/{id}")
+    public ResponseEntity<Iterable<Song>> getAllSongsByGenreId(@PathVariable Long id) throws Exception {
+
+        Iterable<Song> songs = songService.findAllSongsByGenreId(id);
+
+        if (songs == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(songs, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/all/search/{partialName}")
+    public ResponseEntity<Iterable<Song>> searchSongsByPartialName(@PathVariable String partialName) throws Exception {
+        Iterable<Song> songs = songService.findAllSongsByPartialName(partialName);
+
+        if (songs == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(songs, HttpStatus.OK);
+    }
+
     /**
      * This method is used to add a new song to the database, it is called when a
      * POST request is made to /song/add, it returns a JSON object with the new song
@@ -77,17 +96,17 @@ public class SongController {
      *               <p>
      */
     @PostMapping(path = "/add")
-    public ResponseEntity<Song> addNewSong(@RequestBody Song song) throws Exception {
+    public ResponseEntity<Song> addNewSong(@RequestBody SongDTO song) throws Exception {
 
-        if (song.getPlayListHasSongs() != null) {
+        // if (song.getPlayListHasSongs() != null) {
 
-            for (PlayListHasSong playListHasSong : song.getPlayListHasSongs()) {
-                playListHasSong.setSong(song);
-                Long playListId = playListHasSong.getPlayList().getId();
-                PlayList playList = playListService.findPlayListById(playListId);
-                playListHasSong.setPlayList(playList);
-            }
-        }
+        // for (PlayListHasSong playListHasSong : song.getPlayListHasSongs()) {
+        // playListHasSong.setSong(song);
+        // Long playListId = playListHasSong.getPlayList().getId();
+        // PlayList playList = playListService.findPlayListById(playListId);
+        // playListHasSong.setPlayList(playList);
+        // }
+        // }
 
         Song songToSave = songService.saveSong(song);
 
@@ -99,7 +118,7 @@ public class SongController {
     }
 
     @PostMapping(path = "/addMany")
-    public ResponseEntity<Iterable<Song>> addNewSongs(@RequestBody Iterable<Song> songs) throws Exception {
+    public ResponseEntity<Iterable<Song>> addNewSongs(@RequestBody Iterable<SongDTO> songs) throws Exception {
         Iterable<Song> savedSongs = songService.saveManySongs(songs);
 
         if (savedSongs == null) {
@@ -123,15 +142,17 @@ public class SongController {
      *              <p>
      */
     @PutMapping(path = "/update/{id}")
-    public ResponseEntity<String> updateSongById(@PathVariable Long id, @RequestBody Song song) throws Exception {
-            
-            Song songToUpdate = songService.updateSong(id, song);
-    
-            if (songToUpdate == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-    
-            return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<String> updateSongById(@PathVariable Long id, @RequestBody SongDTO song) throws Exception {
+
+        Song songToUpdate = songService.updateSong(id, song);
+
+        System.out.println("Song to update: " + song.toString());
+
+        if (songToUpdate == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -158,6 +179,34 @@ public class SongController {
         songService.deleteSongById(id);
 
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping(path = "/addLike/{id}")
+    public ResponseEntity<Song> addLikeToSongById(@PathVariable Long id) throws Exception {
+        Song song = songService.findSongById(id);
+
+        if (song == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        song.setLikes(song.getLikes() + 1);
+        songService.saveSong(song);
+
+        return new ResponseEntity<>(song, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/removeLike/{id}")
+    public ResponseEntity<Song> removeLikeFromSongById(@PathVariable Long id) throws Exception {
+        Song song = songService.findSongById(id);
+
+        if (song == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        song.setLikes(song.getLikes() - 1);
+        songService.saveSong(song);
+
+        return new ResponseEntity<>(song, HttpStatus.OK);
     }
 
 }

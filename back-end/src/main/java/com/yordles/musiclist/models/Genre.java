@@ -1,13 +1,15 @@
 package com.yordles.musiclist.models;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Entity
-@Table(name = "genre", indexes = { 
-@Index(name = "name_UNIQUE", columnList = "name", unique = true) })
+@Table(name = "genre", indexes = {
+        @Index(name = "name_UNIQUE", columnList = "name", unique = true) })
 @Data
 @NoArgsConstructor
 public class Genre {
@@ -24,5 +26,8 @@ public class Genre {
     @Column(name = "description", nullable = false)
     @NonNull
     private String description;
+
+    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
+    private Set<Song> songs;
 
 }

@@ -16,7 +16,8 @@ import java.util.Set;
  * @description: This class is used to handle the user requests
  * @annotations:
  * @Service for Spring to detect this class as a service
- * @RequiredArgsConstructor for Lombok to generate a constructor with the required arguments
+ * @RequiredArgsConstructor for Lombok to generate a constructor with the
+ *                          required arguments
  */
 @Service
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class UserService {
     // @Autowired for Spring to inject the dependencies
     @Autowired
     // UserRepository for Spring to detect this class as a component
-            UserRepository userRepository;
+    UserRepository userRepository;
 
     /**
      * @param id

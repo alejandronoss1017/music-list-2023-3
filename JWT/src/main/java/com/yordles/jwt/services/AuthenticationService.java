@@ -15,40 +15,37 @@ import java.util.Map;
 @Service
 public class AuthenticationService {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+        @Autowired
+        private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserRepository userRepository;
+        @Autowired
+        private UserRepository userRepository;
 
-    @Autowired
-    private JWTService jwtService;
+        @Autowired
+        private JWTService jwtService;
 
-    public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                new UsernamePasswordAuthenticationToken(
-                        authenticationRequest.getUsername(),
-                        authenticationRequest.getPassword()
-                );
+        public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+                                authenticationRequest.getUsername(),
+                                authenticationRequest.getPassword());
 
-        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+                authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
-        User user = userRepository.findByUsernameOrEmail(
-                        authenticationRequest.getUsername(), authenticationRequest.getUsername())
-                .orElseThrow(
-                        () -> new UsernameNotFoundException("User not found with username or email: " +
-                                authenticationRequest.getUsername())
-                );
+                User user = userRepository.findByUsernameOrEmail(
+                                authenticationRequest.getUsername(), authenticationRequest.getUsername())
+                                .orElseThrow(
+                                                () -> new UsernameNotFoundException(
+                                                                "User not found with username or email: " +
+                                                                                authenticationRequest.getUsername()));
 
-        String jwt = jwtService.generateToken(user, generateExtraClaims(user));
+                String jwt = jwtService.generateToken(user, generateExtraClaims(user));
 
-        return new AuthenticationResponse(jwt);
-    }
+                return new AuthenticationResponse(jwt, user.getAdmin() == 1 ? true : false);
+        }
 
-    private Map<String, Object> generateExtraClaims(User user) {
-        return Map.of(
-                "username", user.getUsername(),
-                "admin", user.getAdmin()
-        );
-    }
+        private Map<String, Object> generateExtraClaims(User user) {
+                return Map.of(
+                                "username", user.getUsername(),
+                                "admin", user.getAdmin() == 1 ? "yes" : "no");
+        }
 }

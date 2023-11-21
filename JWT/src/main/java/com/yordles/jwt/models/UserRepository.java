@@ -8,7 +8,8 @@ import java.util.Optional;
 /**
  * @interface: UserRepository
  * @description: This interface is used to interact with the database
- * @extends: CrudRepository for Spring to detect this interface as a repository and execute the methods
+ * @extends: CrudRepository for Spring to detect this interface as a repository
+ *           and execute the methods
  */
 public interface UserRepository extends CrudRepository<User, Long> {
     /**

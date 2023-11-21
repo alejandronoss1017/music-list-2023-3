@@ -7,13 +7,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 /**
  * @class: User
- * @description: This class is used to store the user information in the database
+ * @description: This class is used to store the user information in the
+ *               database
  * @annotations:
  * @Entity for Spring to detect this class as a table in the database
  * @Getter for Lombok to generate the getters
@@ -53,7 +53,6 @@ public class User implements UserDetails {
     // admin for the user
     private int admin;
 
-
     /**
      * @name: User
      * @description: This method is used to create an empty user
@@ -72,19 +71,29 @@ public class User implements UserDetails {
      * @name: User
      * @description: This method is used to create a user with the given parameters
      */
-    public User(String email, String password, String username) {
+    public User(String username, String email, String password) {
         super();
         this.username = username;
         this.email = email;
         this.password = password;
+        this.admin = 0;
+    }
+
+    public static User createAdmin(String username, String email, String password) {
+        User user = new User(username, email, password);
+        user.admin = 1;
+        return user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = Arrays.asList(
-                new SimpleGrantedAuthority("ROLE_USER"),
-                new SimpleGrantedAuthority("ROLE_ADMIN")
-        );
+        List<GrantedAuthority> authorities = null;
+
+        if (this.admin == 1)
+            authorities = List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        else
+            authorities = List.of(new SimpleGrantedAuthority("ROLE_USER"));
+
         return authorities;
     }
 

@@ -1,0 +1,83 @@
+<app-banner [text]="'Welcome to the best music app!'"></app-banner>
+
+<section class="w-full h-full">
+  <form
+    action=""
+    method="post"
+    class="flex p-6 justify-center w-full h-full"
+    [formGroup]="songForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div
+      class="flex flex-col h-full items-center justify-between w-4/6 p-5 rounded-lg bg-cyan-900"
+    >
+      <h1 class="text-2xl font-bold">Create Song</h1>
+      <label for="" class="flex items-center justify-center gap-4 w-3/6">
+        <h3 class="w-3/6">Name:</h3>
+        <input
+          type="text"
+          class="rounded-sm h-8 w-3/6"
+          placeholder="Enter a song name"
+          formControlName="name"
+        />
+      </label>
+      <label for="" class="flex items-center justify-center gap-4 w-3/6">
+        <h3 class="w-3/6">Artist:</h3>
+        <input
+          type="text"
+          class="rounded-sm h-8 w-3/6"
+          placeholder="Enter an artist name"
+          formControlName="artist"
+        />
+      </label>
+      <label for="" class="flex items-center justify-center gap-4 w-3/6">
+        <h3 class="w-3/6">Album:</h3>
+        <input
+          type="text"
+          class="rounded-sm h-8 w-3/6"
+          placeholder="Enter an album name"
+          formControlName="album"
+        />
+      </label>
+      <label for="" class="flex items-center justify-center gap-4 w-3/6">
+        <h3 class="w-3/6">Duration:</h3>
+        <input
+          type="text"
+          class="rounded-sm h-8 w-3/6"
+          placeholder="Enter a duration"
+          formControlName="duration"
+        />
+      </label>
+      <label for="" class="flex items-center justify-center gap-4 w-3/6">
+        <h3 class="w-3/6">Release Date:</h3>
+        <input
+          type="date"
+          class="rounded-sm h-8 w-3/6"
+          formControlName="releaseDate"
+        />
+      </label>
+
+      <label for="" class="flex items-center justify-center gap-4 w-3/6">
+        <h3 class="w-3/6">Genre:</h3>
+        <select class="rounded-sm h-8 w-3/6" formControlName="genreId">
+          <option value="" disabled selected>Select a genre</option>
+          <option *ngFor="let genre of genres" value="{{ genre.id }}">
+            {{ genre.name }}
+          </option>
+        </select>
+      </label>
+      <button
+        type="submit"
+        [disabled]="songForm.invalid"
+        class=""
+        [className]="
+          songForm.invalid
+            ? 'bg-gray-500 w-3/6 rounded-xl p-4 font-poppins text-white text-xl font-semibold shadow-xl transition'
+            : 'bg-russian-violet w-3/6 rounded-xl p-4 font-poppins text-white text-xl font-semibold shadow-xl transition duration-500 ease-in-out hover:bg-blue-900 hover:shadow-none active:bg-blue-900 active:shadow-none'
+        "
+      >
+        Create
+      </button>
+    </div>
+  </form>
+</section>

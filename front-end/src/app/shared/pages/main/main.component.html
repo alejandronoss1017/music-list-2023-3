@@ -1,15 +1,11 @@
 <!-- main-page.component.html -->
 
-<div class="flex  min-h-screen">
-  <aside class="bg-yellow-900 p-4 w-64 relative">
-    <div class="fixed h-full">
-      <shared-sidebar class="h-full bg-black"></shared-sidebar>
-    </div>
-  </aside>
+<div class="flex self-stretch">
+  <!-- Sidebar -->
+  <shared-sidebar />
 
   <!-- Component-->
-  <main class="w-full">
-    <!-- Home -->
-    <router-outlet></router-outlet>
+  <main class="w-5/6 flex flex-col items-start self-stretch">
+    <router-outlet />
   </main>
 </div>

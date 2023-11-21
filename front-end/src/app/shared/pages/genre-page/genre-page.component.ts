@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Song } from 'src/types/Song';
+import { SongService } from '../../services/songs/song.service';
+import { GenreService } from '../../services/genres/genre.service';
 
 @Component({
   selector: 'app-genre-page',
@@ -7,36 +10,35 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./genre-page.component.css']
 })
 export class GenrePageComponent implements OnInit {
-  musicList: any[] = [];
+  musicList: Song[] = [];
   genre: string = '';
+  genreId: number = 0;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, 
+    private songService: SongService, 
+    private genreService: GenreService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.genre = params['genre'];
-      this.loadMusicList(); // Load music list based on the genre
+    this.genre = params['genre'].toUpperCase();
+    // Fetch the genre ID using the GenreService
+    this.genreService.getGenreIdByName(this.genre).subscribe((response: any) => {
+        this.genreId = response.id;
+        console.log(this.genreId);
+        this.loadMusicList(); // Load music list based on the genre
+    });
     });
   }
 
-  loadMusicList() {
-    // You can load the music list based on the genre using an HTTP request or manually.
-    // For demonstration purposes, I'll provide an example of manually setting the music list.
-    if (this.genre === 'rock') {
-      this.musicList = [
-        { title: 'Song Title 1', artist: 'Artist Name 1', duration: '4:20', album: 'Album Name 1' },
-        // Add more rock songs here
-      ];
-    } else if (this.genre === 'pop') {
-      this.musicList = [
-        { title: 'Song Title 1', artist: 'Artist Name 1', duration: '4:20', album: 'Album Name 1' },
-        // Add more pop songs here
-      ];
-    }
+  toggleHeartColor(song: Song) {
+    song.favorite = !song.favorite;
   }
 
-  favoriteStates: boolean[] = new Array(this.musicList.length).fill(false);
-  toggleHeartColor(index: number) {
-    this.favoriteStates[index] = !this.favoriteStates[index];
+  loadMusicList() {
+    // `getSongsByGenreId` method to fetch songs by genre ID.
+    this.songService.getSongsByGenreId(this.genreId).subscribe((songs: any) => {
+      this.musicList = songs;
+    });
   }
+
 }

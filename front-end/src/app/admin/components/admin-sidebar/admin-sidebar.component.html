@@ -1,66 +1,72 @@
-<!-- Sidebar component -->
-<div class="h-full flex flex-col justify-between">
-  <div class="flex items-center mb-4">
-    <img
-      src="assets/images/MusicList.svg"
-      alt="Music List"
-      class="w-20 h-20 ml-2"
-    />
-    <div class="text-white text-xl">Music list</div>
-  </div>
-  <nav>
-    <!-- TODO: Usar ngfor para esta lista -->
-    <ul>
-      <li
-        class="mb-2 cursor-pointer hover:bg-orange-500 hover:text-gray-300"
-        [routerLink]="['/admin', 'crudgenres']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <span class="text-white flex items-center gap-3">
-          <img src="assets/icons/hero-home.svg" alt="Home icon" class="h-8" />
-          <p>Genres</p>
-        </span>
-      </li>
-      <li
-        class="mb-2 cursor-pointer hover:bg-orange-500 hover:text-gray-300"
-        [routerLink]="['/admin', 'crudsongs']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <span class="text-white flex items-center gap-3">
+<aside class="h-full">
+  <div class="flex flex-col h-full">
+    <div class="flex items-center justify-center py-8">
+      <img
+        src="assets/images/MusicList-white.svg"
+        alt="Music list logo"
+        width="96px"
+        height="96px"
+      />
+      <h3 class="text-white font-bold">Music list</h3>
+    </div>
+    <div
+      class="flex flex-col h-full justify-between items-start self-stretch p-4"
+    >
+      <nav class="flex flex-col items-start justify-between w-full">
+        <a
+          routerLink="/admin"
+          href=""
+          class="flex w-full py-3 gap-3 rounded-md hover:bg-[#181648]"
+          [class.selected]="isCurrentRoute('/admin')"
+        >
+          <img
+            src="assets/icons/hero-play.svg"
+            alt="Home icon"
+            width="24px"
+            height="24px"
+          />
+          <span class="text-white">Songs</span>
+        </a>
+        <a
+          routerLink="/admin/genres"
+          href=""
+          class="flex w-full py-3 gap-3 rounded-md hover:bg-[#181648]"
+          [class.selected]="isCurrentRoute('/admin/genres')"
+        >
           <img
             src="assets/icons/hero-music.svg"
             alt="Genres icon"
-            class="h-8"
+            width="24px"
+            height="24px"
           />
-          <p>Songs</p>
-        </span>
-      </li>
-    </ul>
-  </nav>
-
-  <div class="flex flex-col pb-8 gap-4">
-    <span class="hover:bg-orange-600 rounded-lg">
-      <a
-        class="flex items-center gap-2"
-        href="https://github.com/alejandronoss1017/music-list-2023-3"
-        target="_blank"
+          <span class="text-white">Genres</span>
+        </a>
+        <a
+          href="https://github.com/alejandronoss1017/music-list-2023-3"
+          target="_blank"
+          class="flex w-full py-3 gap-3 rounded-md hover:bg-[#181648]"
+        >
+          <img
+            src="assets/icons/github-original.svg"
+            alt="GitHub icon"
+            width="24px"
+            height="24px"
+          />
+          <span class="text-white">Source code</span>
+        </a>
+      </nav>
+      <button
+        (click)="logout()"
+        class="flex justify-center items-center self-stretch py-3 gap-3 w-full rounded-md hover:bg-[#181648]"
       >
         <img
-          src="assets/images/github-original.svg"
-          alt="Github logo"
-          class="h-10"
+          src="assets/icons/hero-logout.svg"
+          alt="Logout icon"
+          width="24px"
+          height="24px"
         />
-        <p class="text-white">Source code</p>
-      </a>
-    </span>
-    <button
-      class="w-full rounded-xl p-4 font-poppins text-white text-xl font-semibold shadow-xl transition duration-500 ease-in-out bg-red-600 hover:bg-red-700"
-    >
-      <span [routerLink]="'/authentication'" style="cursor: pointer"
-        >Sing out</span
-      >
-    </button>
+        <span class="text-white">Log out</span>
+      </button>
+    </div>
   </div>
-</div>
+</aside>

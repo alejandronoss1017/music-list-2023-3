@@ -12,7 +12,13 @@
   <main
     class="flex md:flex-col md:h-screen md:w-2/5 justify-between items-center"
   >
-    <section class="h-full flex flex-col justify-between px-11 py-11">
+    <form
+      class="h-full flex flex-col justify-between px-11 py-11"
+      action=""
+      method="post"
+      [formGroup]="authForm"
+      (ngSubmit)="onSubmit()"
+    >
       <article
         class="text-dark-purple w-full flex flex-col p-3 items-start gap-3"
       >
@@ -28,12 +34,14 @@
       </article>
 
       <input
-        type="email"
+        formControlName="username"
+        type="text"
         class="w-full rounded-xl border-2 border-D1D1D1 p-4"
-        placeholder="Email address"
+        placeholder="Username"
       />
 
       <input
+        formControlName="password"
         type="password"
         class="w-full rounded-xl border-2 border-D1D1D1 p-4"
         placeholder="Password"
@@ -51,14 +59,25 @@
           />
           <label for="" class="font-poppins"> Keep me logged in</label>
         </span>
-          <span class="text-goldenrod font-bold" [routerLink]="'/admin'"style="cursor: pointer">Forgot password?</span>
+        <span class="text-goldenrod font-bold" style="cursor: pointer"
+          >Forgot password?</span
+        >
       </div>
 
-      <app-button [class]="'w-full'" [text]="'Log in'" [routerLink]="'/main'"></app-button>
+      <app-button
+        [class]="'w-full'"
+        [text]="'Log in'"
+        type="submit"
+      ></app-button>
 
       <span class="text-dark-purple flex w-full items-center gap-3">
         <p>Don't have an account?</p>
-          <span class="text-goldenrod font-bold" [routerLink]="'/signup'"style="cursor: pointer">Sign up</span>
+        <span
+          class="text-goldenrod font-bold"
+          [routerLink]="'/signup'"
+          style="cursor: pointer"
+          >Sign up</span
+        >
       </span>
 
       <div class="text-dark-purple flex items-center justify-center w-full">
@@ -79,6 +98,6 @@
           class="lg:min-h-2 lg:max-h-12"
         />
       </div>
-    </section>
+    </form>
   </main>
 </div>

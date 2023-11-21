@@ -1,7 +1,14 @@
+import { Genre } from './Genre';
+
 export type Song = {
-  title: string;
+  id: number;
+  name: string;
   artist: string;
-  duration: string;
+  duration: number | string;
+  likes?: number;
   album: string;
   favorite: boolean;
+  releaseDate?: string;
+  genreId?: number;
+  genre: Genre;
 };

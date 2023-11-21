@@ -55,6 +55,12 @@ public class SongService {
     }
 
     @Transactional
+    public Song saveSong(Song songToSave) {
+
+        return songRepository.save(songToSave);
+    }
+
+    @Transactional
     public Iterable<Song> saveManySongs(Iterable<SongDTO> songs) {
 
         List<Song> songsToSave = mapIterable(songs);

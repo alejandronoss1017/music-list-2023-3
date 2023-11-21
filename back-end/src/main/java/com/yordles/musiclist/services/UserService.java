@@ -46,6 +46,12 @@ public class UserService {
     }
 
     @Transactional
+    public User findUserByUsername(String username, boolean isDTO) {
+
+        return userRepository.findByUsername(username);
+    }
+
+    @Transactional
     public Set<User> findUserByIds(Set<Long> ids) {
         Set<User> userSet = new HashSet<>();
         userRepository.findAllById(ids).forEach(userSet::add);

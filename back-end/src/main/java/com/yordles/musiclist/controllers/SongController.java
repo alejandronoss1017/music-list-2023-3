@@ -149,7 +149,7 @@ public class SongController {
         System.out.println("Song to update: " + song.toString());
 
         if (songToUpdate == null) {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(HttpStatus.OK);
@@ -179,6 +179,34 @@ public class SongController {
         songService.deleteSongById(id);
 
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping(path = "/addLike/{id}")
+    public ResponseEntity<Song> addLikeToSongById(@PathVariable Long id) throws Exception {
+        Song song = songService.findSongById(id);
+
+        if (song == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        song.setLikes(song.getLikes() + 1);
+        songService.saveSong(song);
+
+        return new ResponseEntity<>(song, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/removeLike/{id}")
+    public ResponseEntity<Song> removeLikeFromSongById(@PathVariable Long id) throws Exception {
+        Song song = songService.findSongById(id);
+
+        if (song == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        song.setLikes(song.getLikes() - 1);
+        songService.saveSong(song);
+
+        return new ResponseEntity<>(song, HttpStatus.OK);
     }
 
 }

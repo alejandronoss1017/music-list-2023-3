@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterRequest } from 'src/types/RegisterRequest';
 import { UserService } from '../../services/users/user.service';
+import Cookies from 'js-cookie';
 
 @Component({
   selector: 'app-sign-up',
@@ -36,9 +37,11 @@ export class SignUpComponent implements OnInit {
   async onSubmit() {
     
     const response = await this.authService.register(this.registerForm.value as RegisterRequest);
-
+    console.log("Form: " + this.registerForm.value);
+    
     // Crear el usuario en la base de datos del backend musiclist
     this.userService.registerUser(this.registerForm.value);
+
 
     if (response) {
       const loginRequest = {
@@ -47,6 +50,22 @@ export class SignUpComponent implements OnInit {
       };
 
       await this.authService.login(loginRequest);
+
+      if (Cookies.get('role') == 'Admin' || Cookies.get('role') == 'User') {
+      await this.authService.verifyRole(Cookies.get('role') as string);
+
+      switch (Cookies.get('role')) {
+        case 'Admin':
+          this.router.navigate(['/admin']);
+          break;
+        case 'User':
+          this.router.navigate(['/main']);
+          break;
+        default:
+          console.log('You are not logged in');
+      }
+    }
+    console.log('You are not logged in');
     }
   }
 }

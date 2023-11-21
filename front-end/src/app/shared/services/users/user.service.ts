@@ -9,6 +9,7 @@ import { Song } from 'src/types/Song';
 })
 export class UserService {
   private apiUrl = environment.backendUrl + 'songLike';
+  private apiUrl2 = environment.backendUrl + 'user';
 
   constructor(private http: HttpClient) {}
 
@@ -43,6 +44,7 @@ export class UserService {
   }
 
   registerUser(user: any) {
-    return this.http.post(`${this.apiUrl}/add`, user);
+    console.log('User: ', user)
+    return this.http.post(`${this.apiUrl2}/add`, user).subscribe();
   }
 }

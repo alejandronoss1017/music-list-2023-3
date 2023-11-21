@@ -8,7 +8,8 @@ import lombok.Data;
  * @class: UserDTO
  * @description: This class is used to return the user information
  * @annotations:
- * @AllArgsConstructor for Lombok to generate a constructor with all the arguments
+ * @AllArgsConstructor for Lombok to generate a constructor with all the
+ *                     arguments
  * @Builder for Lombok to generate a builder
  * @Data for Lombok to generate the getters and setters
  */

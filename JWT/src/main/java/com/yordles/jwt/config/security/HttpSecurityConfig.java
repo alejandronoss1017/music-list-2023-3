@@ -34,19 +34,17 @@ public class HttpSecurityConfig {
                         sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .authorizeHttpRequests(authConfig ->
-                        {
-                            authConfig.requestMatchers(HttpMethod.POST, "/login").permitAll();
-                            authConfig.requestMatchers(HttpMethod.POST, "/register").permitAll();
-                            authConfig.requestMatchers(HttpMethod.POST, "/registerAdmin").permitAll();
-                            authConfig.requestMatchers("/error").permitAll();
+                .authorizeHttpRequests(authConfig -> {
+                    authConfig.requestMatchers(HttpMethod.POST, "/login").permitAll();
+                    authConfig.requestMatchers(HttpMethod.POST, "/register").permitAll();
+                    authConfig.requestMatchers(HttpMethod.POST, "/registerAdmin").permitAll();
+                    authConfig.requestMatchers("/error").permitAll();
 
-                            authConfig.requestMatchers(HttpMethod.GET, "/verifyRoleUser").hasAuthority("ROLE_USER");
-                            authConfig.requestMatchers(HttpMethod.GET, "/verifyRoleAdmin").hasAuthority("ROLE_ADMIN");
+                    authConfig.requestMatchers(HttpMethod.GET, "/verifyRoleUser").hasAuthority("ROLE_USER");
+                    authConfig.requestMatchers(HttpMethod.GET, "/verifyRoleAdmin").hasAuthority("ROLE_ADMIN");
 
-                            authConfig.anyRequest().denyAll();
-                        }
-                );
+                    authConfig.anyRequest().denyAll();
+                });
         return http.build();
     }
 

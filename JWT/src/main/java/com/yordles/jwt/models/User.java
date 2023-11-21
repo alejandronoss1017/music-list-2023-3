@@ -7,13 +7,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 /**
  * @class: User
- * @description: This class is used to store the user information in the database
+ * @description: This class is used to store the user information in the
+ *               database
  * @annotations:
  * @Entity for Spring to detect this class as a table in the database
  * @Getter for Lombok to generate the getters
@@ -52,7 +52,6 @@ public class User implements UserDetails {
     @Column(nullable = false)
     // admin for the user
     private int admin;
-
 
     /**
      * @name: User

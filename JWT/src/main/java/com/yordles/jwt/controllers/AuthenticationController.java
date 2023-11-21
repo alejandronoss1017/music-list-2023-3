@@ -6,6 +6,10 @@ import com.yordles.jwt.DTO.UserDTO;
 import com.yordles.jwt.models.User;
 import com.yordles.jwt.services.AuthenticationService;
 import com.yordles.jwt.services.UserService;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +28,9 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(
-            @RequestBody AuthenticationRequest authenticationRequest
-    ) {
+            @RequestBody AuthenticationRequest authenticationRequest) {
         AuthenticationResponse jwtDto = authenticationService.login(authenticationRequest);
+
         return ResponseEntity.ok().body(jwtDto);
     }
 
@@ -59,12 +63,16 @@ public class AuthenticationController {
     }
 
     @GetMapping("/verifyRoleUser")
-    public ResponseEntity<String> verifyRoleUser() {
-        return ResponseEntity.ok().body("You have the user role");
+    public ResponseEntity<?> verifyRoleUser() {
+        Map<String, Boolean> role = new HashMap<>();
+        role.put("User", true);
+        return ResponseEntity.ok(role);
     }
 
     @GetMapping("/verifyRoleAdmin")
-    public ResponseEntity<String> verifyRoleAdmin() {
-        return ResponseEntity.ok().body("You have the admin role");
+    public ResponseEntity<?> verifyRoleAdmin() {
+        Map<String, Boolean> role = new HashMap<>();
+        role.put("Admin", true);
+        return ResponseEntity.ok(role);
     }
 }
